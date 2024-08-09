@@ -7,7 +7,7 @@ import '@aws-amplify/ui-react/styles.css';
 const client = generateClient<Schema>();
 
 function App() {
-  const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
+  //const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
 
   useEffect(() => {
     client.models.Todo.observeQuery().subscribe({
@@ -15,9 +15,9 @@ function App() {
     });
   }, []);
 
-  function createTodo() {
-    client.models.Todo.create({ content: window.prompt("Todo content"), isDone: true });
-  }
+  //function createTodo() {
+  //  client.models.Todo.create({ content: window.prompt("Todo content"), isDone: true });
+  //}
 
   return (
     <main>
