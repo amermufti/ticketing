@@ -50,6 +50,8 @@ function App() {
         <RadioGroupField
           legend="Severity"
           name="Severity"
+          marginTop="0.2em"
+          marginBottom="0.2em"
         >
           <Radio value="Normal">Normal</Radio>
           <Radio value="High">High</Radio>
@@ -59,9 +61,28 @@ function App() {
           name="notes_request"
           placeholder=""
           rows={4} />
-        <Text>
-          Start Date/Time: 2024-08-09 12:30PM PDT
+        <Text
+          marginTop="0.2em"
+          marginBottom="0.2em"
+        >
+          Requested: 2024-08-09 12:30PM PDT
         </Text>
+        <RadioGroupField
+          legend="Status"
+          name="Status"
+          marginTop="0.2em"
+          marginBottom="0.2em"
+          isDisabled
+        >
+          <Radio value="Submitted">Submitted</Radio>
+          <Radio value="InProgress">In Progress</Radio>
+          <Radio value="Completed">Completed</Radio>
+        </RadioGroupField>
+        <TextAreaField
+          label="Resolution"
+          name="notes_resolution"
+          placeholder=""
+          rows={4} />
 
 
       </Card>
