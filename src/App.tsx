@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
+import { Card, Flex, Image, Badge, Text, StepperField, Button } from "aws-amplify/ui-react";
 
 const client = generateClient<Schema>();
 
@@ -33,6 +34,40 @@ function App() {
           Review next step of this tutorial.
         </a>
       </div>
+
+      <Card variation="elevated">
+        <Flex alignItems="flex-start">
+          <Image src="/amplify-placeholder.svg"
+            alt="Amplify" width="8rem" />
+          <Flex direction="column" gap="xs">
+            <Flex>
+              <Badge variation="success">New</Badge>
+            </Flex>
+            <Text fontSize="large" fontWeight="semibold">
+              Product title
+            </Text>
+            <Text color="font.tertiary">
+              Product description
+            </Text>
+            <Text
+              fontSize="large"
+              color="secondary">
+              $199.99
+            </Text>
+            <Flex>
+              <StepperField
+                label="Quantity"
+                min={0}
+                max={10}
+                step={1}
+                defaultValue={1}
+                labelHidden
+              />
+              <Button variation="primary">Add to cart</Button>
+            </Flex>
+          </Flex>
+        </Flex>
+      </Card>
     </main>
   );
 }
