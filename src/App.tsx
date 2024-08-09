@@ -38,43 +38,56 @@ function App() {
 
       <Card 
         variation="elevated" 
-        width="80em"
+        width="60em"
         marginTop="0.3em"
         marginBottom="0.3em"
-    >
+      >
         <TextField
           placeholder=""
-          label="Requestor Name"
+          label="Requestor Name:"
           errorMessage="There is an error"
+          marginTop="0.4em"
+          marginBottom="0.4em"
         />
         <TextField
           placeholder=""
-          label="Requestor Email"
+          label="Requestor Email:"
           errorMessage="There is an error"
+          marginTop="0.4em"
+          marginBottom="0.4em"
         />
         <RadioGroupField
-          legend="Severity"
+          legend="Severity: "
           name="Severity"
           defaultValue="Normal"
           direction="row"
+          marginTop="0.4em"
+          marginBottom="0.4em"
         >
           <Radio value="Normal">Normal</Radio>
           <Radio value="High">High</Radio>
         </RadioGroupField>
         <TextAreaField
-          label="Please describe the issue"
+          label="Please describe the issue:"
           name="notes_request"
           placeholder=""
-          rows={4} />
+          rows={4} 
+          marginTop="0.4em"
+          marginBottom="0.4em"
+        />
         <Text
+          marginTop="0.4em"
+          marginBottom="0.4em"
         >
           Requested: 2024-08-09 12:30PM PDT
         </Text>
         <RadioGroupField
-          legend="Status"
+          legend="Status: "
           name="Status"
           defaultValue="Submitted"
           direction="row"
+          marginTop="0.4em"
+          marginBottom="0.4em"
           isDisabled
         >
           <Radio value="Submitted">Submitted</Radio>
@@ -82,12 +95,19 @@ function App() {
           <Radio value="Completed">Completed</Radio>
         </RadioGroupField>
         <TextAreaField
-          label="Resolution"
+          label="Resolution:"
           name="notes_resolution"
           placeholder=""
-          rows={4} />
-
-
+          rows={4} 
+          marginTop="0.4em"
+          marginBottom="0.4em"
+        />
+        <Text
+          marginTop="0.4em"
+          marginBottom="0.4em"
+        >
+          Resolved: 2024-08-09 03:30PM PDT
+        </Text>
       </Card>
     </main>
   );
