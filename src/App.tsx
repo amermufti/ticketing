@@ -1,12 +1,25 @@
 //import { useEffect, useState } from "react";
 //import type { Schema } from "../amplify/data/resource";
 //import { generateClient } from "aws-amplify/data";
-import { Card, Flex, Image, Badge, Text, StepperField, Button } from "@aws-amplify/ui-react";
+import {
+  TextField,
+  TextAreaField,
+  RadioGroupField,
+  Radio,
+  Card, 
+  Flex, 
+  Image, 
+  Badge, 
+  Text, 
+  StepperField, 
+  Button 
+} from "@aws-amplify/ui-react";
 import '@aws-amplify/ui-react/styles.css';
 
 //const client = generateClient<Schema>();
 
 function App() {
+  /*
   //const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
 
   //useEffect(() => {
@@ -18,9 +31,33 @@ function App() {
   //function createTodo() {
   //  client.models.Todo.create({ content: window.prompt("Todo content"), isDone: true });
   //}
+  */
 
   return (
     <main>
+
+      <TextField
+        placeholder=""
+        label="Requestor Name"
+        errorMessage="There is an error"
+      />
+      <TextField
+        placeholder=""
+        label="Requestor Email"
+        errorMessage="There is an error"
+      />
+      <RadioGroupField
+        legend="Severity"
+      name="Severity"
+      >
+        <Radio value="Normal">Normal</Radio>
+        <Radio value="High">High</Radio>
+      </RadioGroupField>
+      <TextAreaField
+        label="Please describe the issue"
+        name="notes_request"
+        placeholder=""
+        rows={4}/>
       <Card variation="elevated">
         <Flex alignItems="flex-start">
           <Image src="/amplify-placeholder.svg"
