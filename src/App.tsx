@@ -102,6 +102,14 @@ function App() {
           <Radio value="Normal">Normal</Radio>
           <Radio value="High">High</Radio>
         </RadioGroupField>
+        <TextField
+          placeholder=""
+          label="Reason for High:"
+          errorMessage="There is an error"
+          marginTop="0.5em"
+          marginBottom="0.5em"
+          isDisabled
+        />
         <TextAreaField
           label="Please describe the issue:"
           name="notes_request"
@@ -145,34 +153,65 @@ function App() {
         </Text>
       </Card>
 
+      <Card
+        variation="elevated"
+        width="80em"
+        marginTop="0.3em"
+        marginBottom="0.3em"
+      >
       <ThemeProvider theme={theme} colorMode="light">
         <Table highlightOnHover variation="striped">
           <TableHead>
             <TableRow>
-              <TableCell as="th">Citrus</TableCell>
-              <TableCell as="th">Stone Fruit</TableCell>
-              <TableCell as="th">Berry</TableCell>
+              <TableCell as="th">Requestor</TableCell>
+              <TableCell as="th">Email</TableCell>
+              <TableCell as="th">Severity</TableCell>
+              <TableCell as="th">Reason</TableCell>
+              <TableCell as="th">Issue</TableCell>
+              <TableCell as="th">Started</TableCell>
+              <TableCell as="th">Status</TableCell>
+              <TableCell as="th">Resolution</TableCell>
+              <TableCell as="th">Resolved</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             <TableRow>
-              <TableCell>Orange</TableCell>
-              <TableCell>Nectarine</TableCell>
-              <TableCell>Raspberry</TableCell>
+              <TableCell>Bob</TableCell>
+              <TableCell>bob@wagstafflawfirm.com</TableCell>
+              <TableCell>Normal</TableCell>
+              <TableCell></TableCell>
+              <TableCell>Can't log in ...</TableCell>
+              <TableCell>2024-08-09 12:30PM PDT</TableCell>
+              <TableCell>Completed</TableCell>
+              <TableCell>Password reset</TableCell>
+              <TableCell>2024-08-09 03:30PM PDT</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Grapefruit</TableCell>
-              <TableCell>Apricot</TableCell>
-              <TableCell>Blueberry</TableCell>
+            <TableCell>Mary</TableCell>
+              <TableCell>mary@wagstafflawfirm.com</TableCell>
+              <TableCell>High</TableCell>
+              <TableCell>Court date tomorrow</TableCell>
+              <TableCell>Evidence file not available ...</TableCell>
+              <TableCell>2024-08-06 09:30AM PDT</TableCell>
+              <TableCell>Completed</TableCell>
+              <TableCell>Password reset</TableCell>
+              <TableCell>2024-08-06 10:30AM PDT</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Lime</TableCell>
-              <TableCell>Peach</TableCell>
-              <TableCell>Strawberry</TableCell>
+            <TableCell>Bob</TableCell>
+              <TableCell>bob@wagstafflawfirm.com</TableCell>
+              <TableCell>Normal</TableCell>
+              <TableCell></TableCell>
+              <TableCell>Cannot find case info ...</TableCell>
+              <TableCell>2024-08-09 02:30PM PDT</TableCell>
+              <TableCell>In Progress</TableCell>
+              <TableCell>Requested further detail</TableCell>
+              <TableCell></TableCell>
             </TableRow>
           </TableBody>
         </Table>
       </ThemeProvider>
+      </Card>
     </main>
   );
 }
