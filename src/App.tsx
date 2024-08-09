@@ -7,12 +7,12 @@ import {
   RadioGroupField,
   Radio,
   Card, 
-  Flex, 
-  Image, 
-  Badge, 
+  //Flex, 
+  //Image, 
+  //Badge, 
   Text, 
-  StepperField, 
-  Button 
+  //StepperField, 
+  //Button 
 } from "@aws-amplify/ui-react";
 import '@aws-amplify/ui-react/styles.css';
 
@@ -64,6 +64,15 @@ function App() {
         </Text>
 
 
+      </Card>
+    </main>
+  );
+}
+
+export default App;
+
+/*
+
         <Flex alignItems="flex-start">
           <Image src="/amplify-placeholder.svg"
             alt="Amplify" width="8rem" />
@@ -95,14 +104,7 @@ function App() {
             </Flex>
           </Flex>
         </Flex>
-      </Card>
-    </main>
-  );
-}
 
-export default App;
-
-/*
       <h1>My todos</h1>
       <button onClick={createTodo}>+ new</button>
       <ul>
