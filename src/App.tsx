@@ -36,29 +36,34 @@ function App() {
   return (
     <main>
 
-      <TextField
-        placeholder=""
-        label="Requestor Name"
-        errorMessage="There is an error"
-      />
-      <TextField
-        placeholder=""
-        label="Requestor Email"
-        errorMessage="There is an error"
-      />
-      <RadioGroupField
-        legend="Severity"
-      name="Severity"
-      >
-        <Radio value="Normal">Normal</Radio>
-        <Radio value="High">High</Radio>
-      </RadioGroupField>
-      <TextAreaField
-        label="Please describe the issue"
-        name="notes_request"
-        placeholder=""
-        rows={4}/>
       <Card variation="elevated">
+        <TextField
+          placeholder=""
+          label="Requestor Name"
+          errorMessage="There is an error"
+        />
+        <TextField
+          placeholder=""
+          label="Requestor Email"
+          errorMessage="There is an error"
+        />
+        <RadioGroupField
+          legend="Severity"
+          name="Severity"
+        >
+          <Radio value="Normal">Normal</Radio>
+          <Radio value="High">High</Radio>
+        </RadioGroupField>
+        <TextAreaField
+          label="Please describe the issue"
+          name="notes_request"
+          placeholder=""
+          rows={4} />
+        <Text>
+          Start Date/Time: 2024-08-09 12:30PM PDT
+        </Text>
+
+
         <Flex alignItems="flex-start">
           <Image src="/amplify-placeholder.svg"
             alt="Amplify" width="8rem" />
