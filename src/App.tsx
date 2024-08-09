@@ -50,8 +50,10 @@ function App() {
         <RadioGroupField
           legend="Severity"
           name="Severity"
-          marginTop="0.2em"
-          marginBottom="0.2em"
+          marginTop="0.3em"
+          marginBottom="0.3em"
+          defaultValue="Normal"
+          direction="row"
         >
           <Radio value="Normal">Normal</Radio>
           <Radio value="High">High</Radio>
@@ -62,16 +64,18 @@ function App() {
           placeholder=""
           rows={4} />
         <Text
-          marginTop="0.2em"
-          marginBottom="0.2em"
+          marginTop="0.3em"
+          marginBottom="0.3em"
         >
           Requested: 2024-08-09 12:30PM PDT
         </Text>
         <RadioGroupField
           legend="Status"
           name="Status"
-          marginTop="0.2em"
-          marginBottom="0.2em"
+          marginTop="0.3em"
+          marginBottom="0.3em"
+          defaultValue="Submitted"
+          direction="row"
           isDisabled
         >
           <Radio value="Submitted">Submitted</Radio>
