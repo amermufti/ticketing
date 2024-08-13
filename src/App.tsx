@@ -136,7 +136,6 @@ function App() {
           Submit Request
         </Button>
         <Text
-          name="time_requested"
           marginTop="0.5em"
           marginBottom="0.5em"
         >
@@ -164,7 +163,6 @@ function App() {
           marginBottom="0.5em"
         />
         <Text
-          name="time_resolved"
           marginTop="0.5em"
           marginBottom="0.5em"
         >
