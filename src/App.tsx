@@ -72,7 +72,7 @@ function App() {
   }, []);
 
   function createTicket() {
-    setNotesResolution('Submitted');
+    setStatus('Submitted');
     client.models.Ticket.create(
       { requester_name: requesterName,
         requester_email: requesterEmail,
