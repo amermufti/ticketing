@@ -127,6 +127,7 @@ function App() {
           direction="row"
           marginTop="0.5em"
           marginBottom="0.5em"
+          onChange={(e) => setSeverity(e.target.value)}
         >
           <Radio value="Normal">Normal</Radio>
           <Radio value="High">High</Radio>
@@ -138,7 +139,7 @@ function App() {
           errorMessage="There is an error"
           marginTop="0.5em"
           marginBottom="0.5em"
-          isDisabled
+          isDisabled={severity === 'Normal' ? true : false}
           onBlur={e => {
             e.stopPropagation();
             e.nativeEvent.stopImmediatePropagation();
@@ -178,6 +179,7 @@ function App() {
           marginTop="0.5em"
           marginBottom="0.5em"
           isDisabled
+          onChange={(e) => setStatus(e.target.value)}
         >
           <Radio value="Submitted">Submitted</Radio>
           <Radio value="InProgress">In Progress</Radio>
