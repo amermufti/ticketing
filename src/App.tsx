@@ -184,7 +184,7 @@ function App() {
           marginTop="0.5em"
           marginBottom="0.5em"
         >
-          Requested: 2024-08-09 12:30PM PDT
+          Submitted: 2024-08-09 12:30PM PDT
         </Text>
         <RadioGroupField
           legend="Status: "
@@ -201,7 +201,7 @@ function App() {
           <Radio value="Completed">Completed</Radio>
         </RadioGroupField>
         <TextAreaField
-          label="Resolution:"
+          label="Notes:"
           name="notes_resolution"
           placeholder=""
           rows={4}
