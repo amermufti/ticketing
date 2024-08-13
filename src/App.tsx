@@ -57,12 +57,12 @@ function App() {
   const [tickets, setTickets] = useState<Array<Schema["Ticket"]["type"]>>([]);
   const [requesterName, setRequesterName] = useState('');
   const [requesterEmail, setRequesterEmail] = useState('');
-  const [severity, setSeverity] = useState('');
+  const [severity, setSeverity] = useState('Normal');
   const [reasonForHigh, setReasonForHigh] = useState('');
   const [notesRequest, setNotesRequest] = useState('');
   //const [timeRquested, setTimeRquested] = useState('');
   const [status, setStatus] = useState('');
-  const [notesResolution, setNotesResolution] = useState('');
+  const [notesResolution, setNotesResolution] = useState('Submitted');
   //const [timeResolved, setTimeResolved] = useState('');
 
   useEffect(() => {
