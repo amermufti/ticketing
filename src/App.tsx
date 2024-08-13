@@ -55,6 +55,8 @@ const theme: Theme = {
 
 function App() {
   const [tickets, setTickets] = useState<Array<Schema["Ticket"]["type"]>>([]);
+  const [requesterName, setRequesterName] = useState('');
+  const [requesterEmail, setRequesterEmail] = useState('');
 
   useEffect(() => {
     client.models.Ticket.observeQuery().subscribe({
@@ -64,8 +66,8 @@ function App() {
 
   function createTicket() {
     client.models.Ticket.create(
-      { requester_name: '',
-        requester_email: '',
+      { requester_name: requesterName,
+        requester_email: requesterEmail,
         severity: '',
         reason_for_high: '',
         notes_request: '',
@@ -92,6 +94,11 @@ function App() {
           errorMessage="There is an error"
           marginTop="0.5em"
           marginBottom="0.5em"
+          onBlur={e => {
+            e.stopPropagation();
+            e.nativeEvent.stopImmediatePropagation();
+            setRequesterName(e.target.value);
+          }}
         />
         <TextField
           placeholder=""
@@ -100,6 +107,11 @@ function App() {
           errorMessage="There is an error"
           marginTop="0.5em"
           marginBottom="0.5em"
+          onBlur={e => {
+            e.stopPropagation();
+            e.nativeEvent.stopImmediatePropagation();
+            setRequesterEmail(e.target.value);
+          }}
         />
         <RadioGroupField
           legend="Severity: "
@@ -198,39 +210,19 @@ function App() {
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow>
-              <TableCell>Bob</TableCell>
-              <TableCell>bob@wagstafflawfirm.com</TableCell>
-              <TableCell>Normal</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Can't log in ...</TableCell>
-              <TableCell>2024-08-09 12:30PM PDT</TableCell>
-              <TableCell>Completed</TableCell>
-              <TableCell>Password reset</TableCell>
-              <TableCell>2024-08-09 03:30PM PDT</TableCell>
-            </TableRow>
-            <TableRow>
-            <TableCell>Mary</TableCell>
-              <TableCell>mary@wagstafflawfirm.com</TableCell>
-              <TableCell>High</TableCell>
-              <TableCell>Court date tomorrow</TableCell>
-              <TableCell>Evidence file not available ...</TableCell>
-              <TableCell>2024-08-06 09:30AM PDT</TableCell>
-              <TableCell>Completed</TableCell>
-              <TableCell>Password reset</TableCell>
-              <TableCell>2024-08-06 10:30AM PDT</TableCell>
-            </TableRow>
-            <TableRow>
-            <TableCell>Bob</TableCell>
-              <TableCell>bob@wagstafflawfirm.com</TableCell>
-              <TableCell>Normal</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Cannot find case info ...</TableCell>
-              <TableCell>2024-08-09 02:30PM PDT</TableCell>
-              <TableCell>In Progress</TableCell>
-              <TableCell>Requested further detail</TableCell>
-              <TableCell></TableCell>
-            </TableRow>
+            {tickets.map((ticket) => (
+              <TableRow key={ticket.id}>
+                <TableCell>{ticket.requester_name}</TableCell>
+                <TableCell>{ticket.requester_email}</TableCell>
+                <TableCell>{ticket.severity}</TableCell>
+                <TableCell>{ticket.reason_for_high}</TableCell>
+                <TableCell>{ticket.notes_request}</TableCell>
+                <TableCell>{ticket.time_requested}</TableCell>
+                <TableCell>{ticket.status}</TableCell>
+                <TableCell>{ticket.notes_resolution}</TableCell>
+                <TableCell>{ticket.time_resolved}</TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </ThemeProvider>
