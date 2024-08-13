@@ -193,7 +193,7 @@ function App() {
           direction="row"
           marginTop="0.5em"
           marginBottom="0.5em"
-          isDisabled={notesResolution === '' ? true : false}
+          isDisabled={status === '' ? true : false}
           onChange={(e) => setStatus(e.target.value)}
         >
           <Radio value="Submitted">Submitted</Radio>
