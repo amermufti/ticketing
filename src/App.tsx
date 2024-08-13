@@ -84,6 +84,20 @@ function App() {
         time_resolved: ''
         });
   }
+  function updateTicket() {
+    setStatus('Completed');
+    client.models.Ticket.create(
+      { requester_name: requesterName,
+        requester_email: requesterEmail,
+        severity: severity,
+        reason_for_high: reasonForHigh,
+        notes_request: notesRequest,
+        time_requested: '',
+        status: status,
+        notes_resolution: notesResolution,
+        time_resolved: ''
+        });
+  }
 
   return (
     <main>
@@ -198,6 +212,12 @@ function App() {
             setNotesResolution(e.target.value);
           }}
         />
+        <Button 
+          variation="primary"
+          onClick={updateTicket}
+        >
+          Submit Resolution
+        </Button>
         <Text
           marginTop="0.5em"
           marginBottom="0.5em"
