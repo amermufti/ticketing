@@ -68,8 +68,12 @@ function App() {
         requester_email: '',
         severity: '',
         reason_for_high: '',
-        notes_request: ''
-      });
+        notes_request: '',
+        time_requested: '',
+        status: '',
+        notes_resolution: '',
+        time_resolved: ''
+        });
   }
 
   return (
@@ -126,10 +130,11 @@ function App() {
           marginBottom="0.5em"
         />
         <Button 
-          onClick={createTicket}>
+          variation="primary"
+          onClick={createTicket}
+        >
           Submit Request
         </Button>
-
         <Text
           name="time_requested"
           marginTop="0.5em"
@@ -167,6 +172,11 @@ function App() {
         </Text>
       </Card>
 
+      <ul>
+        {tickets.map((ticket) => (
+          <li key={ticket.id}>{ticket.requester_name + ' ' + ticket.requester_email}</li>
+        ))}
+      </ul>
 
       <Card
         variation="elevated"
