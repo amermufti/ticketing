@@ -1,6 +1,6 @@
-//import { useEffect, useState } from "react";
-//import type { Schema } from "../amplify/data/resource";
-//import { generateClient } from "aws-amplify/data";
+import { useEffect, useState } from "react";
+import type { Schema } from "../amplify/data/resource";
+import { generateClient } from "aws-amplify/data";
 import {
   TextField,
   TextAreaField,
@@ -12,7 +12,7 @@ import {
   //Image, 
   //Badge, 
   //StepperField, 
-  //Button 
+  Button,
   Table,
   TableHead,
   TableRow,
@@ -23,7 +23,7 @@ import {
 } from "@aws-amplify/ui-react";
 import '@aws-amplify/ui-react/styles.css';
 
-//const client = generateClient<Schema>();
+const client = generateClient<Schema>();
 
 const theme: Theme = {
   name: 'table-theme',
@@ -54,19 +54,23 @@ const theme: Theme = {
 };
 
 function App() {
-  /*
-  //const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
+  const [tickets, setTickets] = useState<Array<Schema["Ticket"]["type"]>>([]);
 
-  //useEffect(() => {
-  //  client.models.Todo.observeQuery().subscribe({
-  //    next: (data) => setTodos([...data.items]),
-  //  });
-  //}, []);
+  useEffect(() => {
+    client.models.Ticket.observeQuery().subscribe({
+      next: (data) => setTickets([...data.items]),
+    });
+  }, []);
 
-  //function createTodo() {
-  //  client.models.Todo.create({ content: window.prompt("Todo content"), isDone: true });
-  //}
-  */
+  function createTicket() {
+    client.models.Ticket.create(
+      { requester_name: '',
+        requester_email: '',
+        severity: '',
+        reason_for_high: '',
+        notes_request: ''
+      });
+  }
 
   return (
     <main>
@@ -80,6 +84,7 @@ function App() {
         <TextField
           placeholder=""
           label="Requestor Name:"
+          name="requester_name"
           errorMessage="There is an error"
           marginTop="0.5em"
           marginBottom="0.5em"
@@ -87,13 +92,14 @@ function App() {
         <TextField
           placeholder=""
           label="Requestor Email:"
+          name="requester_email"
           errorMessage="There is an error"
           marginTop="0.5em"
           marginBottom="0.5em"
         />
         <RadioGroupField
           legend="Severity: "
-          name="Severity"
+          name="severity"
           defaultValue="Normal"
           direction="row"
           marginTop="0.5em"
@@ -105,6 +111,7 @@ function App() {
         <TextField
           placeholder=""
           label="Reason for High:"
+          name="reason_for_high"
           errorMessage="There is an error"
           marginTop="0.5em"
           marginBottom="0.5em"
@@ -118,7 +125,13 @@ function App() {
           marginTop="0.5em"
           marginBottom="0.5em"
         />
+        <Button 
+          onClick={createTicket}>
+          Submit Request
+        </Button>
+
         <Text
+          name="time_requested"
           marginTop="0.5em"
           marginBottom="0.5em"
         >
@@ -126,7 +139,7 @@ function App() {
         </Text>
         <RadioGroupField
           legend="Status: "
-          name="Status"
+          name="status"
           defaultValue="Submitted"
           direction="row"
           marginTop="0.5em"
@@ -146,6 +159,7 @@ function App() {
           marginBottom="0.5em"
         />
         <Text
+          name="time_resolved"
           marginTop="0.5em"
           marginBottom="0.5em"
         >
