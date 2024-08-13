@@ -57,6 +57,13 @@ function App() {
   const [tickets, setTickets] = useState<Array<Schema["Ticket"]["type"]>>([]);
   const [requesterName, setRequesterName] = useState('');
   const [requesterEmail, setRequesterEmail] = useState('');
+  const [severity, setSeverity] = useState('');
+  const [reasonForHigh, setReasonForHigh] = useState('');
+  const [notesRequest, setNotesRequest] = useState('');
+  //const [timeRquested, setTimeRquested] = useState('');
+  const [status, setStatus] = useState('');
+  const [notesResolution, setNotesResolution] = useState('');
+  //const [timeResolved, setTimeResolved] = useState('');
 
   useEffect(() => {
     client.models.Ticket.observeQuery().subscribe({
@@ -68,12 +75,12 @@ function App() {
     client.models.Ticket.create(
       { requester_name: requesterName,
         requester_email: requesterEmail,
-        severity: '',
-        reason_for_high: '',
-        notes_request: '',
+        severity: severity,
+        reason_for_high: reasonForHigh,
+        notes_request: notesRequest,
         time_requested: '',
-        status: '',
-        notes_resolution: '',
+        status: status,
+        notes_resolution: notesResolution,
         time_resolved: ''
         });
   }
@@ -132,6 +139,11 @@ function App() {
           marginTop="0.5em"
           marginBottom="0.5em"
           isDisabled
+          onBlur={e => {
+            e.stopPropagation();
+            e.nativeEvent.stopImmediatePropagation();
+            setReasonForHigh(e.target.value);
+          }}
         />
         <TextAreaField
           label="Please describe the issue:"
@@ -140,6 +152,11 @@ function App() {
           rows={4}
           marginTop="0.5em"
           marginBottom="0.5em"
+          onBlur={e => {
+            e.stopPropagation();
+            e.nativeEvent.stopImmediatePropagation();
+            setNotesRequest(e.target.value);
+          }}
         />
         <Button 
           variation="primary"
@@ -173,6 +190,11 @@ function App() {
           rows={4}
           marginTop="0.5em"
           marginBottom="0.5em"
+          onBlur={e => {
+            e.stopPropagation();
+            e.nativeEvent.stopImmediatePropagation();
+            setNotesResolution(e.target.value);
+          }}
         />
         <Text
           marginTop="0.5em"
@@ -181,13 +203,6 @@ function App() {
           Resolved: 2024-08-09 03:30PM PDT
         </Text>
       </Card>
-
-      <ul>
-        {tickets.map((ticket) => (
-          <li key={ticket.id}>{ticket.requester_name + ' ' + ticket.requester_email}</li>
-        ))}
-      </ul>
-
       <Card
         variation="elevated"
         width="80em"
