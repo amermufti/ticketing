@@ -62,7 +62,7 @@ function App() {
   const [notesRequest, setNotesRequest] = useState('');
   //const [timeRquested, setTimeRquested] = useState('');
   const [status, setStatus] = useState('');
-  const [notesResolution, setNotesResolution] = useState('Submitted');
+  const [notesResolution, setNotesResolution] = useState('');
   //const [timeResolved, setTimeResolved] = useState('');
 
   useEffect(() => {
@@ -72,6 +72,7 @@ function App() {
   }, []);
 
   function createTicket() {
+    setNotesResolution('Submitted');
     client.models.Ticket.create(
       { requester_name: requesterName,
         requester_email: requesterEmail,
@@ -192,7 +193,7 @@ function App() {
           direction="row"
           marginTop="0.5em"
           marginBottom="0.5em"
-          isDisabled
+          isDisabled={notesResolution === '' ? true : false}
           onChange={(e) => setStatus(e.target.value)}
         >
           <Radio value="Submitted">Submitted</Radio>
