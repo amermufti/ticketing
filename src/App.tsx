@@ -64,8 +64,15 @@ function App() {
   const [status, setStatus] = useState('');
   const [notesResolution, setNotesResolution] = useState('');
   //const [timeResolved, setTimeResolved] = useState('');
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
+    let search = window.location.search;
+    let params = new URLSearchParams(search);
+    let foo = params.get('pick');    
+    if (foo != null && foo === 'admin') {
+      setIsAdmin(true);
+    }
     client.models.Ticket.observeQuery().subscribe({
       next: (data) => setTickets([...data.items]),
     });
@@ -103,6 +110,7 @@ function App() {
   return (
     <main>
 
+      {isAdmin === false ?
       <Card
         variation="elevated"
         width="60em"
@@ -186,6 +194,14 @@ function App() {
         >
           Submitted: 2024-08-09 12:30PM PDT
         </Text>
+      </Card>
+      :
+      <Card
+        variation="elevated"
+        width="60em"
+        marginTop="0.3em"
+        marginBottom="0.3em"
+      >
         <RadioGroupField
           legend="Status: "
           name="status"
@@ -225,13 +241,6 @@ function App() {
         >
           Resolved: 2024-08-09 03:30PM PDT
         </Text>
-      </Card>
-      <Card
-        variation="elevated"
-        width="80em"
-        marginTop="0.3em"
-        marginBottom="0.3em"
-      >
       <ThemeProvider theme={theme} colorMode="light">
         <Table highlightOnHover variation="striped">
           <TableHead>
@@ -265,6 +274,7 @@ function App() {
         </Table>
       </ThemeProvider>
       </Card>
+    }
     </main>
   );
 }
