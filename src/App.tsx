@@ -111,249 +111,198 @@ function App() {
   return (
     <main>
 
-<Grid
-  columnGap="0.5rem"
-  rowGap="0.5rem"
-  templateColumns="1fr 1fr 1fr"
-  templateRows="1fr 3fr 1fr"
->      
-  <Card
-    columnStart="1"
-    columnEnd="-1"
-  >
-    Header
-  </Card>
-  <Card
-    columnStart="1"
-    columnEnd="2"
-  >
-    Nav
-  </Card>  
-      {isAdmin === false ?
-      <Card
-        variation="elevated"
-        width="60em"
-        marginTop="0.3em"
-        marginBottom="0.3em"
+      <Grid
+        columnGap="0.5rem"
+        rowGap="0.5rem"
+        templateColumns="1fr 1fr 1fr"
+        templateRows="1fr 3fr 1fr"
       >
-        <TextField
-          placeholder=""
-          label="Requestor Name:"
-          name="requester_name"
-          errorMessage="There is an error"
-          marginTop="0.5em"
-          marginBottom="0.5em"
-          onBlur={e => {
-            e.stopPropagation();
-            e.nativeEvent.stopImmediatePropagation();
-            setRequesterName(e.target.value);
-          }}
-        />
-        <TextField
-          placeholder=""
-          label="Requestor Email:"
-          name="requester_email"
-          errorMessage="There is an error"
-          marginTop="0.5em"
-          marginBottom="0.5em"
-          onBlur={e => {
-            e.stopPropagation();
-            e.nativeEvent.stopImmediatePropagation();
-            setRequesterEmail(e.target.value);
-          }}
-        />
-        <RadioGroupField
-          legend="Severity: "
-          name="severity"
-          defaultValue="Normal"
-          direction="row"
-          marginTop="0.5em"
-          marginBottom="0.5em"
-          onChange={(e) => setSeverity(e.target.value)}
+        <Card
+          columnStart="1"
+          columnEnd="-1"
         >
-          <Radio value="Normal">Normal</Radio>
-          <Radio value="High">High</Radio>
-        </RadioGroupField>
-        <TextField
-          placeholder=""
-          label="Reason for High:"
-          name="reason_for_high"
-          errorMessage="There is an error"
-          marginTop="0.5em"
-          marginBottom="0.5em"
-          isDisabled={severity === 'Normal' ? true : false}
-          onBlur={e => {
-            e.stopPropagation();
-            e.nativeEvent.stopImmediatePropagation();
-            setReasonForHigh(e.target.value);
-          }}
-        />
-        <TextAreaField
-          label="Please describe the issue:"
-          name="notes_request"
-          placeholder=""
-          rows={4}
-          marginTop="0.5em"
-          marginBottom="0.5em"
-          onBlur={e => {
-            e.stopPropagation();
-            e.nativeEvent.stopImmediatePropagation();
-            setNotesRequest(e.target.value);
-          }}
-        />
-        <Button 
-          variation="primary"
-          onClick={createTicket}
+          Header
+        </Card>
+        <Card
+          columnStart="1"
+          columnEnd="2"
         >
-          Submit Request
-        </Button>
-        <Text
-          marginTop="0.5em"
-          marginBottom="0.5em"
+          Nav
+        </Card>
+        {isAdmin === false ?
+          <Card
+            variation="elevated"
+            width="60em"
+            marginTop="0.3em"
+            marginBottom="0.3em"
+          >
+            <TextField
+              placeholder=""
+              label="Requestor Name:"
+              name="requester_name"
+              errorMessage="There is an error"
+              marginTop="0.5em"
+              marginBottom="0.5em"
+              onBlur={e => {
+                e.stopPropagation();
+                e.nativeEvent.stopImmediatePropagation();
+                setRequesterName(e.target.value);
+              }}
+            />
+            <TextField
+              placeholder=""
+              label="Requestor Email:"
+              name="requester_email"
+              errorMessage="There is an error"
+              marginTop="0.5em"
+              marginBottom="0.5em"
+              onBlur={e => {
+                e.stopPropagation();
+                e.nativeEvent.stopImmediatePropagation();
+                setRequesterEmail(e.target.value);
+              }}
+            />
+            <RadioGroupField
+              legend="Severity: "
+              name="severity"
+              defaultValue="Normal"
+              direction="row"
+              marginTop="0.5em"
+              marginBottom="0.5em"
+              onChange={(e) => setSeverity(e.target.value)}
+            >
+              <Radio value="Normal">Normal</Radio>
+              <Radio value="High">High</Radio>
+            </RadioGroupField>
+            <TextField
+              placeholder=""
+              label="Reason for High:"
+              name="reason_for_high"
+              errorMessage="There is an error"
+              marginTop="0.5em"
+              marginBottom="0.5em"
+              isDisabled={severity === 'Normal' ? true : false}
+              onBlur={e => {
+                e.stopPropagation();
+                e.nativeEvent.stopImmediatePropagation();
+                setReasonForHigh(e.target.value);
+              }}
+            />
+            <TextAreaField
+              label="Please describe the issue:"
+              name="notes_request"
+              placeholder=""
+              rows={4}
+              marginTop="0.5em"
+              marginBottom="0.5em"
+              onBlur={e => {
+                e.stopPropagation();
+                e.nativeEvent.stopImmediatePropagation();
+                setNotesRequest(e.target.value);
+              }}
+            />
+            <Button
+              variation="primary"
+              onClick={createTicket}
+            >
+              Submit Request
+            </Button>
+            <Text
+              marginTop="0.5em"
+              marginBottom="0.5em"
+            >
+              Submitted: 2024-08-09 12:30PM PDT
+            </Text>
+          </Card>
+          :
+          <Card
+            variation="elevated"
+            width="60em"
+            marginTop="0.3em"
+            marginBottom="0.3em"
+          >
+            <RadioGroupField
+              legend="Status: "
+              name="status"
+              defaultValue="Submitted"
+              direction="row"
+              marginTop="0.5em"
+              marginBottom="0.5em"
+              isDisabled={status === '' ? true : false}
+              onChange={(e) => setStatus(e.target.value)}
+            >
+              <Radio value="Submitted">Submitted</Radio>
+              <Radio value="InProgress">In Progress</Radio>
+              <Radio value="Completed">Completed</Radio>
+            </RadioGroupField>
+            <TextAreaField
+              label="Notes:"
+              name="notes_resolution"
+              placeholder=""
+              rows={4}
+              marginTop="0.5em"
+              marginBottom="0.5em"
+              onBlur={e => {
+                e.stopPropagation();
+                e.nativeEvent.stopImmediatePropagation();
+                setNotesResolution(e.target.value);
+              }}
+            />
+            <Button
+              variation="primary"
+              onClick={updateTicket}
+            >
+              Submit Resolution
+            </Button>
+            <Text
+              marginTop="0.5em"
+              marginBottom="0.5em"
+            >
+              Resolved: 2024-08-09 03:30PM PDT
+            </Text>
+            <ThemeProvider theme={theme} colorMode="light">
+              <Table highlightOnHover variation="striped">
+                <TableHead>
+                  <TableRow>
+                    <TableCell as="th">Requestor</TableCell>
+                    <TableCell as="th">Email</TableCell>
+                    <TableCell as="th">Severity</TableCell>
+                    <TableCell as="th">Reason</TableCell>
+                    <TableCell as="th">Issue</TableCell>
+                    <TableCell as="th">Started</TableCell>
+                    <TableCell as="th">Status</TableCell>
+                    <TableCell as="th">Resolution</TableCell>
+                    <TableCell as="th">Resolved</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {tickets.map((ticket) => (
+                    <TableRow key={ticket.id}>
+                      <TableCell>{ticket.requester_name}</TableCell>
+                      <TableCell>{ticket.requester_email}</TableCell>
+                      <TableCell>{ticket.severity}</TableCell>
+                      <TableCell>{ticket.reason_for_high}</TableCell>
+                      <TableCell>{ticket.notes_request}</TableCell>
+                      <TableCell>{ticket.time_requested}</TableCell>
+                      <TableCell>{ticket.status}</TableCell>
+                      <TableCell>{ticket.notes_resolution}</TableCell>
+                      <TableCell>{ticket.time_resolved}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </ThemeProvider>
+          </Card>
+        }
+        <Card
+          columnStart="2"
+          columnEnd="-1"
         >
-          Submitted: 2024-08-09 12:30PM PDT
-        </Text>
-      </Card>
-      :
-      <Card
-        variation="elevated"
-        width="60em"
-        marginTop="0.3em"
-        marginBottom="0.3em"
-      >
-        <RadioGroupField
-          legend="Status: "
-          name="status"
-          defaultValue="Submitted"
-          direction="row"
-          marginTop="0.5em"
-          marginBottom="0.5em"
-          isDisabled={status === '' ? true : false}
-          onChange={(e) => setStatus(e.target.value)}
-        >
-          <Radio value="Submitted">Submitted</Radio>
-          <Radio value="InProgress">In Progress</Radio>
-          <Radio value="Completed">Completed</Radio>
-        </RadioGroupField>
-        <TextAreaField
-          label="Notes:"
-          name="notes_resolution"
-          placeholder=""
-          rows={4}
-          marginTop="0.5em"
-          marginBottom="0.5em"
-          onBlur={e => {
-            e.stopPropagation();
-            e.nativeEvent.stopImmediatePropagation();
-            setNotesResolution(e.target.value);
-          }}
-        />
-        <Button 
-          variation="primary"
-          onClick={updateTicket}
-        >
-          Submit Resolution
-        </Button>
-        <Text
-          marginTop="0.5em"
-          marginBottom="0.5em"
-        >
-          Resolved: 2024-08-09 03:30PM PDT
-        </Text>
-      <ThemeProvider theme={theme} colorMode="light">
-        <Table highlightOnHover variation="striped">
-          <TableHead>
-            <TableRow>
-              <TableCell as="th">Requestor</TableCell>
-              <TableCell as="th">Email</TableCell>
-              <TableCell as="th">Severity</TableCell>
-              <TableCell as="th">Reason</TableCell>
-              <TableCell as="th">Issue</TableCell>
-              <TableCell as="th">Started</TableCell>
-              <TableCell as="th">Status</TableCell>
-              <TableCell as="th">Resolution</TableCell>
-              <TableCell as="th">Resolved</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {tickets.map((ticket) => (
-              <TableRow key={ticket.id}>
-                <TableCell>{ticket.requester_name}</TableCell>
-                <TableCell>{ticket.requester_email}</TableCell>
-                <TableCell>{ticket.severity}</TableCell>
-                <TableCell>{ticket.reason_for_high}</TableCell>
-                <TableCell>{ticket.notes_request}</TableCell>
-                <TableCell>{ticket.time_requested}</TableCell>
-                <TableCell>{ticket.status}</TableCell>
-                <TableCell>{ticket.notes_resolution}</TableCell>
-                <TableCell>{ticket.time_resolved}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </ThemeProvider>
-      </Card>
-    }
-  <Card
-    columnStart="2"
-    columnEnd="-1"
-  >
-    Footer
-  </Card>  
-  </Grid>
+          Footer
+        </Card>
+      </Grid>
     </main>
   );
 }
 
 export default App;
-
-/*
-
-        <Flex alignItems="flex-start">
-          <Image src="/amplify-placeholder.svg"
-            alt="Amplify" width="8rem" />
-          <Flex direction="column" gap="xs">
-            <Flex>
-              <Badge variation="success">New</Badge>
-            </Flex>
-            <Text fontSize="large" fontWeight="semibold">
-              Product title
-            </Text>
-            <Text color="font.tertiary">
-              Product description
-            </Text>
-            <Text
-              fontSize="large"
-              color="secondary">
-              $199.99
-            </Text>
-            <Flex>
-              <StepperField
-                label="Quantity"
-                min={0}
-                max={10}
-                step={1}
-                defaultValue={1}
-                labelHidden
-              />
-              <Button variation="primary">Add to cart</Button>
-            </Flex>
-          </Flex>
-        </Flex>
-
-      <h1>My todos</h1>
-      <button onClick={createTodo}>+ new</button>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>{todo.content}</li>
-        ))}
-      </ul>
-      <div>
-        🥳 App successfully hosted. Try creating a new todo.
-        <br />
-        <a href="https://docs.amplify.aws/react/start/quickstart/#make-frontend-updates">
-          Review next step of this tutorial.
-        </a>
-      </div>
-
-*/
