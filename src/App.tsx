@@ -115,7 +115,6 @@ function App() {
 
   return (
     <main>
-
       <Grid
         columnGap="0.5rem"
         rowGap="0.5rem"
@@ -229,7 +228,7 @@ function App() {
               <Message role="alert" heading="Info" colorTheme="info">
                 Request Submitted
               </Message>
-            ) : null}            
+            ) : null}
           </Card>
           :
           <Card
@@ -258,11 +257,11 @@ function App() {
                     {tickets.map((ticket) => (
                       <TableRow
                         key={ticket.id}
-                        onClick={e => { 
-                            setDrilledDown(true);
-                            console.log('it produced this event:', e)
-                          }
-                        }  
+                        onClick={e => {
+                          setDrilledDown(true);
+                          console.log('it produced this event:', e)
+                        }
+                        }
                       >
                         <TableCell>{ticket.requester_name}</TableCell>
                         <TableCell>{ticket.requester_email}</TableCell>
@@ -286,6 +285,59 @@ function App() {
                 marginTop="0.3em"
                 marginBottom="0.3em"
               >
+                <TextField
+                  placeholder=""
+                  label="Requestor Name:"
+                  name="requester_name"
+                  errorMessage="There is an error"
+                  marginTop="0.5em"
+                  marginBottom="0.5em"
+                  isDisabled
+                />
+                <TextField
+                  placeholder=""
+                  label="Requestor Email:"
+                  name="requester_email"
+                  errorMessage="There is an error"
+                  marginTop="0.5em"
+                  marginBottom="0.5em"
+                  isDisabled
+                />
+                <RadioGroupField
+                  legend="Severity: "
+                  name="severity"
+                  defaultValue="Normal"
+                  direction="row"
+                  marginTop="0.5em"
+                  marginBottom="0.5em"
+                  isDisabled
+                >
+                  <Radio value="Normal">Normal</Radio>
+                  <Radio value="High">High</Radio>
+                </RadioGroupField>
+                <TextField
+                  placeholder=""
+                  label="Reason for High:"
+                  name="reason_for_high"
+                  errorMessage="There is an error"
+                  marginTop="0.5em"
+                  marginBottom="0.5em"
+                  isDisabled
+                />
+                <TextAreaField
+                  label="Description of the issue:"
+                  name="notes_request"
+                  placeholder=""
+                  rows={4}
+                  marginTop="0.5em"
+                  marginBottom="0.5em"
+                  isDisabled                />
+                <Text
+                  marginTop="0.5em"
+                  marginBottom="0.5em"
+                >
+                  Submitted: 2024-08-09 12:30PM PDT
+                </Text>
                 <RadioGroupField
                   legend="Status: "
                   name="status"
