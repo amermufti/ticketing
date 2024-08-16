@@ -261,7 +261,7 @@ function App() {
                             setDrilledDown(true);
                             console.log('it produced this event:', e)
                           }
-                        }
+                        }  
                       >
                         <TableCell>{ticket.requester_name}</TableCell>
                         <TableCell>{ticket.requester_email}</TableCell>
