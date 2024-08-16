@@ -257,7 +257,7 @@ function App() {
                     {tickets.map((ticket) => (
                       <TableRow
                         key={ticket.id}
-                        onClick={e => { setDrilledDown(true) }}
+                        onClick={setDrilledDown(true)}
                       >
                         <TableCell>{ticket.requester_name}</TableCell>
                         <TableCell>{ticket.requester_email}</TableCell>
