@@ -23,6 +23,7 @@ import {
   Theme,  
 } from "@aws-amplify/ui-react";
 import '@aws-amplify/ui-react/styles.css';
+import logo from './assets/WLFLogo1.png';
 
 const client = generateClient<Schema>();
 
@@ -123,7 +124,7 @@ function App() {
         >
           <Image
             alt="Wagstaff Law Firm logo"
-            src="./assets/WLFLogo1.png"
+            src={logo}
             objectFit="initial"
             objectPosition="50% 50%"
             backgroundColor="initial"
