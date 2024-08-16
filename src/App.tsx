@@ -273,7 +273,7 @@ function App() {
                         const dialog = document.querySelector("dialog");
                         if (dialog != null) {
                           console.log('AAA:', e.target);
-                          console.log('THIS:', this);
+                          //console.log('THIS:', this);
                           //setRequesterName(ticket.requester_name);
                           dialog.showModal();
                         }
