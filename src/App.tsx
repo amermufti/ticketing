@@ -119,7 +119,7 @@ function App() {
         templateRows="1fr 3fr 1fr"
       >
         <Card
-          columnStart="1"
+          columnStart="2"
           columnEnd="-1"
         >
           <Image
@@ -136,7 +136,6 @@ function App() {
           columnStart="1"
           columnEnd="2"
         >
-          Nav
         </Card>
         {isAdmin === false ?
           <Card
@@ -307,7 +306,6 @@ function App() {
           columnStart="2"
           columnEnd="-1"
         >
-          Footer
         </Card>
       </Grid>
     </main>
