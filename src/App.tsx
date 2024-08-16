@@ -259,7 +259,9 @@ function App() {
                         key={ticket.id}
                         onClick={e => {
                             const dialog = document.querySelector("dialog");
-                            dialog.showModal();
+                            if (dialog != null) {
+                              dialog.showModal();
+                            }
                             setDrilledDown(true);
                             console.log('it produced this event:', e)
                           }
