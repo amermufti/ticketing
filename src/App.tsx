@@ -83,7 +83,8 @@ function App() {
 
   function createTicket() {
     setStatus('Submitted');
-    setTimeRequested(new Date().toLocaleString('en-US', { timeZone: 'America/Denver' }));
+    let timeReq = new Date().toLocaleString('en-US', { timeZone: 'America/Denver' });
+    setTimeRequested(timeReq);
     setSubmittedActive(true);
     client.models.Ticket.create(
       { requester_name: requesterName,
@@ -91,7 +92,7 @@ function App() {
         severity: severity,
         reason_for_high: reasonForHigh,
         notes_request: notesRequest,
-        time_requested: timeRequested,
+        time_requested: timeReq,
         status: status, 
         notes_resolution: notesResolution,
         time_resolved: ''
@@ -103,6 +104,7 @@ function App() {
     if (dialog != null) {
       dialog.close();
     }
+    let timeRes = new Date().toLocaleString('en-US', { timeZone: 'America/Denver' });
     client.models.Ticket.create(
       { requester_name: requesterName,
         requester_email: requesterEmail,
@@ -112,7 +114,7 @@ function App() {
         time_requested: timeRequested,
         status: status,
         notes_resolution: notesResolution,
-        time_resolved: ''
+        time_resolved: timeRes
         });
   }
 
@@ -237,7 +239,7 @@ function App() {
               Submit Request
             </Button>
             {submittedActive ? (
-              <Message role="alert" heading="Info" colorTheme="info">
+              <Message role="alert" heading="Attention" colorTheme="info">
                 Request Submitted
               </Message>
             ) : null}
@@ -271,6 +273,7 @@ function App() {
                       onClick={e => {
                         const dialog = document.querySelector("dialog");
                         if (dialog != null) {
+                          setRequesterName(ticket.requester_name);
                           dialog.showModal();
                         }
                         console.log('it produced this event:', e)
@@ -302,6 +305,7 @@ function App() {
                     placeholder=""
                     label="Requestor Name:"
                     name="requester_name"
+                    defaultValue={requesterName}
                     errorMessage="There is an error"
                     marginTop="0.5em"
                     marginBottom="0.5em"
@@ -387,12 +391,19 @@ function App() {
                   >
                     Submit Resolution
                   </Button>
-                  <Text
-                    marginTop="0.5em"
-                    marginBottom="0.5em"
+                  <Button
+                    variation="secondary"
+                    onClick={e => {
+                      const dialog = document.querySelector("dialog");
+                      if (dialog != null) {
+                        dialog.close();
+                      }
+                      console.log('it produced this event:', e)
+                    }
+                    }
                   >
-                    Resolved: 2024-08-09 03:30PM PDT
-                  </Text>
+                    Cancel
+                  </Button>
                 </Card>
               </dialog>
           </Card>
