@@ -93,7 +93,7 @@ function App() {
         reason_for_high: reasonForHigh,
         notes_request: notesRequest,
         time_requested: timeRquested,
-        status: status,
+        status: status, 
         notes_resolution: notesResolution,
         time_resolved: ''
         });
