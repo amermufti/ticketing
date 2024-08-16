@@ -7,7 +7,6 @@ import {
   RadioGroupField,
   Radio,
   Card, 
-  Text, 
   Grid,
   Message, 
   Image, 
@@ -44,11 +43,11 @@ const theme: Theme = {
 
         header: {
           color: { value: '{colors.blue.80}' },
-          fontSize: { value: '{fontSizes.large}' },
+          fontSize: { value: '{fontSizes.medium}' },
         },
 
         data: {
-          fontWeight: { value: '{fontWeights.semibold}' },
+          fontWeight: { value: '{fontWeights.normal}' },
         },
       },
     },
@@ -260,7 +259,7 @@ function App() {
                     <TableCell as="th">Severity</TableCell>
                     <TableCell as="th">Reason</TableCell>
                     <TableCell as="th">Issue</TableCell>
-                    <TableCell as="th">Sumitted</TableCell>
+                    <TableCell as="th">Submitted</TableCell>
                     <TableCell as="th">Status</TableCell>
                     <TableCell as="th">Notes</TableCell>
                     <TableCell as="th">Resolved</TableCell>
@@ -273,7 +272,8 @@ function App() {
                       onClick={e => {
                         const dialog = document.querySelector("dialog");
                         if (dialog != null) {
-                          setRequesterName(ticket.requester_name);
+                          console.log('AAA:', tickets[e.target.parentNode.rowIndex-1]);
+                          //setRequesterName(ticket.requester_name);
                           dialog.showModal();
                         }
                         console.log('it produced this event:', e)
