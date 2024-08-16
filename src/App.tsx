@@ -68,7 +68,6 @@ function App() {
   //const [timeResolved, setTimeResolved] = useState('');
   const [isAdmin, setIsAdmin] = useState(false);
   const [submittedActive, setSubmittedActive] = useState(false);
-  const [drilledDown, setDrilledDown] = useState(false);
 
   useEffect(() => {
     let search = window.location.search;
@@ -100,7 +99,10 @@ function App() {
   }
   function updateTicket() {
     setStatus('Completed');
-    setDrilledDown(false);
+    const dialog = document.querySelector("dialog");
+    if (dialog != null) {
+      dialog.close();
+    }
     client.models.Ticket.create(
       { requester_name: requesterName,
         requester_email: requesterEmail,
@@ -269,7 +271,6 @@ function App() {
                       onClick={e => {
                         const dialog = document.querySelector("dialog");
                         if (dialog != null) {
-                          setDrilledDown(true);
                           dialog.showModal();
                         }
                         console.log('it produced this event:', e)
@@ -290,7 +291,6 @@ function App() {
                 </TableBody>
               </Table>
             </ThemeProvider>
-            {drilledDown ? (
               <dialog>
                 <Card
                   variation="elevated"
@@ -395,7 +395,6 @@ function App() {
                   </Text>
                 </Card>
               </dialog>
-            ) : null}
           </Card>
         }
         <Card
