@@ -237,7 +237,7 @@ function App() {
             marginTop="0.3em"
             marginBottom="0.3em"
           >
-            {!drilledDown ? (
+            { true || !drilledDown ? (
               <ThemeProvider theme={theme} colorMode="light">
                 <Table highlightOnHover variation="striped">
                   <TableHead>
@@ -258,9 +258,11 @@ function App() {
                       <TableRow
                         key={ticket.id}
                         onClick={e => {
-                          setDrilledDown(true);
-                          console.log('it produced this event:', e)
-                        }
+                            const dialog = document.querySelector("dialog");
+                            dialog.showModal();
+                            setDrilledDown(true);
+                            console.log('it produced this event:', e)
+                          }
                         }
                       >
                         <TableCell>{ticket.requester_name}</TableCell>
@@ -279,6 +281,7 @@ function App() {
               </ThemeProvider>
             ) : null}
             {drilledDown ? (
+              <dialog>
               <Card
                 variation="elevated"
                 width="50em"
@@ -377,6 +380,7 @@ function App() {
                   Resolved: 2024-08-09 03:30PM PDT
                 </Text>
               </Card>
+              </dialog>
             ) : null}
           </Card>
         }
