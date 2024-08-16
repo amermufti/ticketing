@@ -272,7 +272,7 @@ function App() {
                       onClick={e => {
                         const dialog = document.querySelector("dialog");
                         if (dialog != null) {
-                          console.log('AAA:', tickets[e.target.parentNode.rowIndex-1]);
+                          console.log('AAA:', tickets[e.target.parentElement.rowIndex-1]);
                           //setRequesterName(ticket.requester_name);
                           dialog.showModal();
                         }
@@ -392,7 +392,6 @@ function App() {
                     Submit Resolution
                   </Button>
                   <Button
-                    variation="secondary"
                     onClick={e => {
                       const dialog = document.querySelector("dialog");
                       if (dialog != null) {
