@@ -99,6 +99,7 @@ function App() {
   }
   function updateTicket() {
     setStatus('Completed');
+    setDrilledDown(false);
     client.models.Ticket.create(
       { requester_name: requesterName,
         requester_email: requesterEmail,
