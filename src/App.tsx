@@ -129,7 +129,6 @@ function App() {
             objectPosition="50% 50%"
             backgroundColor="initial"
             height="5em"
-            width="75%"
             opacity="100%"
           />
         </Card>
