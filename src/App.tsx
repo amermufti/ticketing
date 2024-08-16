@@ -83,7 +83,7 @@ function App() {
 
   function createTicket() {
     setStatus('Submitted');
-    setSubmittedAtive(true);
+    setSubmittedActive(true);
     client.models.Ticket.create(
       { requester_name: requesterName,
         requester_email: requesterEmail,
