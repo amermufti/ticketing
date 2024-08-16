@@ -9,7 +9,7 @@ import {
   Card, 
   Text, 
   Grid,
-  //Flex, 
+  Message, 
   Image, 
   //Badge, 
   //StepperField, 
@@ -44,7 +44,7 @@ const theme: Theme = {
 
         header: {
           color: { value: '{colors.blue.80}' },
-          fontSize: { value: '{fontSizes.xl}' },
+          fontSize: { value: '{fontSizes.large}' },
         },
 
         data: {
@@ -67,6 +67,7 @@ function App() {
   const [notesResolution, setNotesResolution] = useState('');
   //const [timeResolved, setTimeResolved] = useState('');
   const [isAdmin, setIsAdmin] = useState(false);
+  const [submittedActive, setSubmittedActive] = useState(false);
 
   useEffect(() => {
     let search = window.location.search;
@@ -82,6 +83,7 @@ function App() {
 
   function createTicket() {
     setStatus('Submitted');
+    setSubmittedAtive(true);
     client.models.Ticket.create(
       { requester_name: requesterName,
         requester_email: requesterEmail,
@@ -140,7 +142,7 @@ function App() {
         {isAdmin === false ?
           <Card
             variation="elevated"
-            width="100%"
+            width="40em"
             marginTop="0.3em"
             marginBottom="0.3em"
           >
@@ -221,6 +223,11 @@ function App() {
             >
               Submitted: 2024-08-09 12:30PM PDT
             </Text>
+            {submittedActive ? (
+              <Message role="alert" heading="Info" colorTheme="info">
+                Request Submitted
+              </Message>
+            ) : null}            
           </Card>
           :
           <Card
@@ -246,7 +253,10 @@ function App() {
                 </TableHead>
                 <TableBody>
                   {tickets.map((ticket) => (
-                    <TableRow key={ticket.id}>
+                    <TableRow 
+                      key={ticket.id}
+                      onClick={e => {alert(e)}}
+                    >
                       <TableCell>{ticket.requester_name}</TableCell>
                       <TableCell>{ticket.requester_email}</TableCell>
                       <TableCell>{ticket.severity}</TableCell>
