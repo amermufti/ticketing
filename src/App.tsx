@@ -10,7 +10,7 @@ import {
   Text, 
   Grid,
   //Flex, 
-  //Image, 
+  Image, 
   //Badge, 
   //StepperField, 
   Button,
