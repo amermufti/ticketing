@@ -92,7 +92,7 @@ function App() {
         severity: severity,
         reason_for_high: reasonForHigh,
         notes_request: notesRequest,
-        time_requested: time_requested,
+        time_requested: timeRquested,
         status: status,
         notes_resolution: notesResolution,
         time_resolved: ''
@@ -107,7 +107,7 @@ function App() {
         severity: severity,
         reason_for_high: reasonForHigh,
         notes_request: notesRequest,
-        time_requested: '',
+        time_requested: timeRquested,
         status: status,
         notes_resolution: notesResolution,
         time_resolved: ''
@@ -221,7 +221,7 @@ function App() {
               placeholder=""
               label="Submitted:"
               name="time_requested"
-              defaultValue={time_requested}
+              defaultValue={timeRquested}
               errorMessage="There is an error"
               marginTop="0.5em"
               marginBottom="0.5em"
@@ -229,6 +229,7 @@ function App() {
             />
             <Button
               variation="primary"
+              isDisabled={status === 'Submitted' ? true : false}
               onClick={createTicket}
             >
               Submit Request
