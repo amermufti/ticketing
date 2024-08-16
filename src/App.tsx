@@ -140,7 +140,7 @@ function App() {
         {isAdmin === false ?
           <Card
             variation="elevated"
-            width="60em"
+            width="100%"
             marginTop="0.3em"
             marginBottom="0.3em"
           >
@@ -238,9 +238,9 @@ function App() {
                     <TableCell as="th">Severity</TableCell>
                     <TableCell as="th">Reason</TableCell>
                     <TableCell as="th">Issue</TableCell>
-                    <TableCell as="th">Started</TableCell>
+                    <TableCell as="th">Sumitted</TableCell>
                     <TableCell as="th">Status</TableCell>
-                    <TableCell as="th">Resolution</TableCell>
+                    <TableCell as="th">Notes</TableCell>
                     <TableCell as="th">Resolved</TableCell>
                   </TableRow>
                 </TableHead>
