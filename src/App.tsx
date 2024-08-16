@@ -274,47 +274,54 @@ function App() {
                 </Table>
               </ThemeProvider>
             ) : null}
-
-            <RadioGroupField
-              legend="Status: "
-              name="status"
-              defaultValue="Submitted"
-              direction="row"
-              marginTop="0.5em"
-              marginBottom="0.5em"
-              isDisabled={status === '' ? true : false}
-              onChange={(e) => setStatus(e.target.value)}
-            >
-              <Radio value="Submitted">Submitted</Radio>
-              <Radio value="InProgress">In Progress</Radio>
-              <Radio value="Completed">Completed</Radio>
-            </RadioGroupField>
-            <TextAreaField
-              label="Notes:"
-              name="notes_resolution"
-              placeholder=""
-              rows={4}
-              marginTop="0.5em"
-              marginBottom="0.5em"
-              onBlur={e => {
-                e.stopPropagation();
-                e.nativeEvent.stopImmediatePropagation();
-                setNotesResolution(e.target.value);
-              }}
-            />
-            <Button
-              variation="primary"
-              onClick={updateTicket}
-            >
-              Submit Resolution
-            </Button>
-            <Text
-              marginTop="0.5em"
-              marginBottom="0.5em"
-            >
-              Resolved: 2024-08-09 03:30PM PDT
-            </Text>
-
+            {drilledDown ? (
+              <Card
+                variation="elevated"
+                width="100%"
+                marginTop="0.3em"
+                marginBottom="0.3em"
+              >
+                <RadioGroupField
+                  legend="Status: "
+                  name="status"
+                  defaultValue="Submitted"
+                  direction="row"
+                  marginTop="0.5em"
+                  marginBottom="0.5em"
+                  isDisabled={status === '' ? true : false}
+                  onChange={(e) => setStatus(e.target.value)}
+                >
+                  <Radio value="Submitted">Submitted</Radio>
+                  <Radio value="InProgress">In Progress</Radio>
+                  <Radio value="Completed">Completed</Radio>
+                </RadioGroupField>
+                <TextAreaField
+                  label="Notes:"
+                  name="notes_resolution"
+                  placeholder=""
+                  rows={4}
+                  marginTop="0.5em"
+                  marginBottom="0.5em"
+                  onBlur={e => {
+                    e.stopPropagation();
+                    e.nativeEvent.stopImmediatePropagation();
+                    setNotesResolution(e.target.value);
+                  }}
+                />
+                <Button
+                  variation="primary"
+                  onClick={updateTicket}
+                >
+                  Submit Resolution
+                </Button>
+                <Text
+                  marginTop="0.5em"
+                  marginBottom="0.5em"
+                >
+                  Resolved: 2024-08-09 03:30PM PDT
+                </Text>
+              </Card>
+            ) : null}
           </Card>
         }
         <Card
