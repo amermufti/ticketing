@@ -68,6 +68,7 @@ function App() {
   //const [timeResolved, setTimeResolved] = useState('');
   const [isAdmin, setIsAdmin] = useState(false);
   const [submittedActive, setSubmittedActive] = useState(false);
+  const [drilledDown, setDrilledDown] = useState(false);
 
   useEffect(() => {
     let search = window.location.search;
@@ -142,7 +143,7 @@ function App() {
         {isAdmin === false ?
           <Card
             variation="elevated"
-            width="40em"
+            width="50em"
             marginTop="0.3em"
             marginBottom="0.3em"
           >
@@ -236,41 +237,44 @@ function App() {
             marginTop="0.3em"
             marginBottom="0.3em"
           >
-            <ThemeProvider theme={theme} colorMode="light">
-              <Table highlightOnHover variation="striped">
-                <TableHead>
-                  <TableRow>
-                    <TableCell as="th">Requestor</TableCell>
-                    <TableCell as="th">Email</TableCell>
-                    <TableCell as="th">Severity</TableCell>
-                    <TableCell as="th">Reason</TableCell>
-                    <TableCell as="th">Issue</TableCell>
-                    <TableCell as="th">Sumitted</TableCell>
-                    <TableCell as="th">Status</TableCell>
-                    <TableCell as="th">Notes</TableCell>
-                    <TableCell as="th">Resolved</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {tickets.map((ticket) => (
-                    <TableRow 
-                      key={ticket.id}
-                      onClick={e => {alert(e)}}
-                    >
-                      <TableCell>{ticket.requester_name}</TableCell>
-                      <TableCell>{ticket.requester_email}</TableCell>
-                      <TableCell>{ticket.severity}</TableCell>
-                      <TableCell>{ticket.reason_for_high}</TableCell>
-                      <TableCell>{ticket.notes_request}</TableCell>
-                      <TableCell>{ticket.time_requested}</TableCell>
-                      <TableCell>{ticket.status}</TableCell>
-                      <TableCell>{ticket.notes_resolution}</TableCell>
-                      <TableCell>{ticket.time_resolved}</TableCell>
+            {!drilledDown ? (
+              <ThemeProvider theme={theme} colorMode="light">
+                <Table highlightOnHover variation="striped">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell as="th">Requestor</TableCell>
+                      <TableCell as="th">Email</TableCell>
+                      <TableCell as="th">Severity</TableCell>
+                      <TableCell as="th">Reason</TableCell>
+                      <TableCell as="th">Issue</TableCell>
+                      <TableCell as="th">Sumitted</TableCell>
+                      <TableCell as="th">Status</TableCell>
+                      <TableCell as="th">Notes</TableCell>
+                      <TableCell as="th">Resolved</TableCell>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </ThemeProvider>
+                  </TableHead>
+                  <TableBody>
+                    {tickets.map((ticket) => (
+                      <TableRow
+                        key={ticket.id}
+                        onClick={e => { setDrilledDown(true) }}
+                      >
+                        <TableCell>{ticket.requester_name}</TableCell>
+                        <TableCell>{ticket.requester_email}</TableCell>
+                        <TableCell>{ticket.severity}</TableCell>
+                        <TableCell>{ticket.reason_for_high}</TableCell>
+                        <TableCell>{ticket.notes_request}</TableCell>
+                        <TableCell>{ticket.time_requested}</TableCell>
+                        <TableCell>{ticket.status}</TableCell>
+                        <TableCell>{ticket.notes_resolution}</TableCell>
+                        <TableCell>{ticket.time_resolved}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </ThemeProvider>
+            ) : null}
+
             <RadioGroupField
               legend="Status: "
               name="status"
@@ -310,6 +314,7 @@ function App() {
             >
               Resolved: 2024-08-09 03:30PM PDT
             </Text>
+
           </Card>
         }
         <Card
