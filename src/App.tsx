@@ -62,7 +62,7 @@ function App() {
   const [severity, setSeverity] = useState('Normal');
   const [reasonForHigh, setReasonForHigh] = useState('');
   const [notesRequest, setNotesRequest] = useState('');
-  //const [timeRquested, setTimeRquested] = useState('');
+  const [timeRquested, setTimeRquested] = useState('');
   const [status, setStatus] = useState('');
   const [notesResolution, setNotesResolution] = useState('');
   //const [timeResolved, setTimeResolved] = useState('');
@@ -84,6 +84,7 @@ function App() {
 
   function createTicket() {
     setStatus('Submitted');
+    setTimeRquested(new Date().toLocaleString('en-US', { timeZone: 'America/Denver' }));
     setSubmittedActive(true);
     client.models.Ticket.create(
       { requester_name: requesterName,
@@ -91,7 +92,7 @@ function App() {
         severity: severity,
         reason_for_high: reasonForHigh,
         notes_request: notesRequest,
-        time_requested: '',
+        time_requested: time_requested,
         status: status,
         notes_resolution: notesResolution,
         time_resolved: ''
@@ -154,6 +155,7 @@ function App() {
               errorMessage="There is an error"
               marginTop="0.5em"
               marginBottom="0.5em"
+              isDisabled={status === 'Submitted' ? true : false}
               onBlur={e => {
                 e.stopPropagation();
                 e.nativeEvent.stopImmediatePropagation();
@@ -167,6 +169,7 @@ function App() {
               errorMessage="There is an error"
               marginTop="0.5em"
               marginBottom="0.5em"
+              isDisabled={status === 'Submitted' ? true : false}
               onBlur={e => {
                 e.stopPropagation();
                 e.nativeEvent.stopImmediatePropagation();
@@ -180,6 +183,7 @@ function App() {
               direction="row"
               marginTop="0.5em"
               marginBottom="0.5em"
+              isDisabled={status === 'Submitted' ? true : false}
               onChange={(e) => setSeverity(e.target.value)}
             >
               <Radio value="Normal">Normal</Radio>
@@ -192,7 +196,7 @@ function App() {
               errorMessage="There is an error"
               marginTop="0.5em"
               marginBottom="0.5em"
-              isDisabled={severity === 'Normal' ? true : false}
+              isDisabled={severity === 'Normal' ? true : status === 'Submitted' ? true : false}
               onBlur={e => {
                 e.stopPropagation();
                 e.nativeEvent.stopImmediatePropagation();
@@ -206,11 +210,22 @@ function App() {
               rows={4}
               marginTop="0.5em"
               marginBottom="0.5em"
+              isDisabled={status === 'Submitted' ? true : false}
               onBlur={e => {
                 e.stopPropagation();
                 e.nativeEvent.stopImmediatePropagation();
                 setNotesRequest(e.target.value);
               }}
+            />
+            <TextField
+              placeholder=""
+              label="Submitted:"
+              name="time_requested"
+              defaultValue={time_requested}
+              errorMessage="There is an error"
+              marginTop="0.5em"
+              marginBottom="0.5em"
+              isDisabled
             />
             <Button
               variation="primary"
@@ -218,12 +233,6 @@ function App() {
             >
               Submit Request
             </Button>
-            <Text
-              marginTop="0.5em"
-              marginBottom="0.5em"
-            >
-              Submitted: 2024-08-09 12:30PM PDT
-            </Text>
             {submittedActive ? (
               <Message role="alert" heading="Info" colorTheme="info">
                 Request Submitted
@@ -336,13 +345,17 @@ function App() {
                   rows={4}
                   marginTop="0.5em"
                   marginBottom="0.5em"
-                  isDisabled                />
-                <Text
+                  isDisabled                
+                />
+                <TextField
+                  placeholder=""
+                  label="Submitted:"
+                  name="time_requested"
+                  errorMessage="There is an error"
                   marginTop="0.5em"
                   marginBottom="0.5em"
-                >
-                  Submitted: 2024-08-09 12:30PM PDT
-                </Text>
+                  isDisabled
+                />
                 <RadioGroupField
                   legend="Status: "
                   name="status"
