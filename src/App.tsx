@@ -225,10 +225,42 @@ function App() {
           :
           <Card
             variation="elevated"
-            width="60em"
+            width="100%"
             marginTop="0.3em"
             marginBottom="0.3em"
           >
+            <ThemeProvider theme={theme} colorMode="light">
+              <Table highlightOnHover variation="striped">
+                <TableHead>
+                  <TableRow>
+                    <TableCell as="th">Requestor</TableCell>
+                    <TableCell as="th">Email</TableCell>
+                    <TableCell as="th">Severity</TableCell>
+                    <TableCell as="th">Reason</TableCell>
+                    <TableCell as="th">Issue</TableCell>
+                    <TableCell as="th">Started</TableCell>
+                    <TableCell as="th">Status</TableCell>
+                    <TableCell as="th">Resolution</TableCell>
+                    <TableCell as="th">Resolved</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {tickets.map((ticket) => (
+                    <TableRow key={ticket.id}>
+                      <TableCell>{ticket.requester_name}</TableCell>
+                      <TableCell>{ticket.requester_email}</TableCell>
+                      <TableCell>{ticket.severity}</TableCell>
+                      <TableCell>{ticket.reason_for_high}</TableCell>
+                      <TableCell>{ticket.notes_request}</TableCell>
+                      <TableCell>{ticket.time_requested}</TableCell>
+                      <TableCell>{ticket.status}</TableCell>
+                      <TableCell>{ticket.notes_resolution}</TableCell>
+                      <TableCell>{ticket.time_resolved}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </ThemeProvider>
             <RadioGroupField
               legend="Status: "
               name="status"
@@ -268,38 +300,6 @@ function App() {
             >
               Resolved: 2024-08-09 03:30PM PDT
             </Text>
-            <ThemeProvider theme={theme} colorMode="light">
-              <Table highlightOnHover variation="striped">
-                <TableHead>
-                  <TableRow>
-                    <TableCell as="th">Requestor</TableCell>
-                    <TableCell as="th">Email</TableCell>
-                    <TableCell as="th">Severity</TableCell>
-                    <TableCell as="th">Reason</TableCell>
-                    <TableCell as="th">Issue</TableCell>
-                    <TableCell as="th">Started</TableCell>
-                    <TableCell as="th">Status</TableCell>
-                    <TableCell as="th">Resolution</TableCell>
-                    <TableCell as="th">Resolved</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {tickets.map((ticket) => (
-                    <TableRow key={ticket.id}>
-                      <TableCell>{ticket.requester_name}</TableCell>
-                      <TableCell>{ticket.requester_email}</TableCell>
-                      <TableCell>{ticket.severity}</TableCell>
-                      <TableCell>{ticket.reason_for_high}</TableCell>
-                      <TableCell>{ticket.notes_request}</TableCell>
-                      <TableCell>{ticket.time_requested}</TableCell>
-                      <TableCell>{ticket.status}</TableCell>
-                      <TableCell>{ticket.notes_resolution}</TableCell>
-                      <TableCell>{ticket.time_resolved}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </ThemeProvider>
           </Card>
         }
         <Card
