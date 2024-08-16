@@ -62,7 +62,7 @@ function App() {
   const [severity, setSeverity] = useState('Normal');
   const [reasonForHigh, setReasonForHigh] = useState('');
   const [notesRequest, setNotesRequest] = useState('');
-  const [timeRquested, setTimeRquested] = useState('');
+  const [timeRequested, setTimeRequested] = useState('');
   const [status, setStatus] = useState('');
   const [notesResolution, setNotesResolution] = useState('');
   //const [timeResolved, setTimeResolved] = useState('');
@@ -84,7 +84,7 @@ function App() {
 
   function createTicket() {
     setStatus('Submitted');
-    setTimeRquested(new Date().toLocaleString('en-US', { timeZone: 'America/Denver' }));
+    setTimeRequested(new Date().toLocaleString('en-US', { timeZone: 'America/Denver' }));
     setSubmittedActive(true);
     client.models.Ticket.create(
       { requester_name: requesterName,
@@ -92,7 +92,7 @@ function App() {
         severity: severity,
         reason_for_high: reasonForHigh,
         notes_request: notesRequest,
-        time_requested: timeRquested,
+        time_requested: timeRequested,
         status: status, 
         notes_resolution: notesResolution,
         time_resolved: ''
@@ -107,7 +107,7 @@ function App() {
         severity: severity,
         reason_for_high: reasonForHigh,
         notes_request: notesRequest,
-        time_requested: timeRquested,
+        time_requested: timeRequested,
         status: status,
         notes_resolution: notesResolution,
         time_resolved: ''
@@ -221,7 +221,7 @@ function App() {
               placeholder=""
               label="Submitted:"
               name="time_requested"
-              defaultValue={timeRquested}
+              defaultValue={timeRequested}
               errorMessage="There is an error"
               marginTop="0.5em"
               marginBottom="0.5em"
@@ -247,155 +247,153 @@ function App() {
             marginTop="0.3em"
             marginBottom="0.3em"
           >
-            { true  || !drilledDown ? (
-              <ThemeProvider theme={theme} colorMode="light">
-                <Table highlightOnHover variation="striped">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell as="th">Requestor</TableCell>
-                      <TableCell as="th">Email</TableCell>
-                      <TableCell as="th">Severity</TableCell>
-                      <TableCell as="th">Reason</TableCell>
-                      <TableCell as="th">Issue</TableCell>
-                      <TableCell as="th">Sumitted</TableCell>
-                      <TableCell as="th">Status</TableCell>
-                      <TableCell as="th">Notes</TableCell>
-                      <TableCell as="th">Resolved</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {tickets.map((ticket) => (
-                      <TableRow
-                        key={ticket.id}
-                        onClick={e => {
-                            const dialog = document.querySelector("dialog");
-                            if (dialog != null) {
-                              dialog.showModal();
-                            }
-                            setDrilledDown(true);
-                            console.log('it produced this event:', e)
-                          }
+            <ThemeProvider theme={theme} colorMode="light">
+              <Table highlightOnHover variation="striped">
+                <TableHead>
+                  <TableRow>
+                    <TableCell as="th">Requestor</TableCell>
+                    <TableCell as="th">Email</TableCell>
+                    <TableCell as="th">Severity</TableCell>
+                    <TableCell as="th">Reason</TableCell>
+                    <TableCell as="th">Issue</TableCell>
+                    <TableCell as="th">Sumitted</TableCell>
+                    <TableCell as="th">Status</TableCell>
+                    <TableCell as="th">Notes</TableCell>
+                    <TableCell as="th">Resolved</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {tickets.map((ticket) => (
+                    <TableRow
+                      key={ticket.id}
+                      onClick={e => {
+                        const dialog = document.querySelector("dialog");
+                        if (dialog != null) {
+                          setDrilledDown(true);
+                          dialog.showModal();
                         }
-                      >
-                        <TableCell>{ticket.requester_name}</TableCell>
-                        <TableCell>{ticket.requester_email}</TableCell>
-                        <TableCell>{ticket.severity}</TableCell>
-                        <TableCell>{ticket.reason_for_high}</TableCell>
-                        <TableCell>{ticket.notes_request}</TableCell>
-                        <TableCell>{ticket.time_requested}</TableCell>
-                        <TableCell>{ticket.status}</TableCell>
-                        <TableCell>{ticket.notes_resolution}</TableCell>
-                        <TableCell>{ticket.time_resolved}</TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </ThemeProvider>
-            ) : null}
+                        console.log('it produced this event:', e)
+                      }
+                      }
+                    >
+                      <TableCell>{ticket.requester_name}</TableCell>
+                      <TableCell>{ticket.requester_email}</TableCell>
+                      <TableCell>{ticket.severity}</TableCell>
+                      <TableCell>{ticket.reason_for_high}</TableCell>
+                      <TableCell>{ticket.notes_request}</TableCell>
+                      <TableCell>{ticket.time_requested}</TableCell>
+                      <TableCell>{ticket.status}</TableCell>
+                      <TableCell>{ticket.notes_resolution}</TableCell>
+                      <TableCell>{ticket.time_resolved}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </ThemeProvider>
             {drilledDown ? (
               <dialog>
-              <Card
-                variation="elevated"
-                width="50em"
-                marginTop="0.3em"
-                marginBottom="0.3em"
-              >
-                <TextField
-                  placeholder=""
-                  label="Requestor Name:"
-                  name="requester_name"
-                  errorMessage="There is an error"
-                  marginTop="0.5em"
-                  marginBottom="0.5em"
-                  isDisabled
-                />
-                <TextField
-                  placeholder=""
-                  label="Requestor Email:"
-                  name="requester_email"
-                  errorMessage="There is an error"
-                  marginTop="0.5em"
-                  marginBottom="0.5em"
-                  isDisabled
-                />
-                <RadioGroupField
-                  legend="Severity: "
-                  name="severity"
-                  defaultValue="Normal"
-                  direction="row"
-                  marginTop="0.5em"
-                  marginBottom="0.5em"
-                  isDisabled
+                <Card
+                  variation="elevated"
+                  width="50em"
+                  marginTop="0.3em"
+                  marginBottom="0.3em"
                 >
-                  <Radio value="Normal">Normal</Radio>
-                  <Radio value="High">High</Radio>
-                </RadioGroupField>
-                <TextField
-                  placeholder=""
-                  label="Reason for High:"
-                  name="reason_for_high"
-                  errorMessage="There is an error"
-                  marginTop="0.5em"
-                  marginBottom="0.5em"
-                  isDisabled
-                />
-                <TextAreaField
-                  label="Description of the issue:"
-                  name="notes_request"
-                  placeholder=""
-                  rows={4}
-                  marginTop="0.5em"
-                  marginBottom="0.5em"
-                  isDisabled                
-                />
-                <TextField
-                  placeholder=""
-                  label="Submitted:"
-                  name="time_requested"
-                  errorMessage="There is an error"
-                  marginTop="0.5em"
-                  marginBottom="0.5em"
-                  isDisabled
-                />
-                <RadioGroupField
-                  legend="Status: "
-                  name="status"
-                  defaultValue="Submitted"
-                  direction="row"
-                  marginTop="0.5em"
-                  marginBottom="0.5em"
-                  onChange={(e) => setStatus(e.target.value)}
-                >
-                  <Radio value="Submitted">Submitted</Radio>
-                  <Radio value="InProgress">In Progress</Radio>
-                  <Radio value="Completed">Completed</Radio>
-                </RadioGroupField>
-                <TextAreaField
-                  label="Notes:"
-                  name="notes_resolution"
-                  placeholder=""
-                  rows={4}
-                  marginTop="0.5em"
-                  marginBottom="0.5em"
-                  onBlur={e => {
-                    e.stopPropagation();
-                    e.nativeEvent.stopImmediatePropagation();
-                    setNotesResolution(e.target.value);
-                  }}
-                />
-                <Button
-                  variation="primary"
-                  onClick={updateTicket}
-                >
-                  Submit Resolution
-                </Button>
-                <Text
-                  marginTop="0.5em"
-                  marginBottom="0.5em"
-                >
-                  Resolved: 2024-08-09 03:30PM PDT
-                </Text>
-              </Card>
+                  <TextField
+                    placeholder=""
+                    label="Requestor Name:"
+                    name="requester_name"
+                    errorMessage="There is an error"
+                    marginTop="0.5em"
+                    marginBottom="0.5em"
+                    isDisabled
+                  />
+                  <TextField
+                    placeholder=""
+                    label="Requestor Email:"
+                    name="requester_email"
+                    errorMessage="There is an error"
+                    marginTop="0.5em"
+                    marginBottom="0.5em"
+                    isDisabled
+                  />
+                  <RadioGroupField
+                    legend="Severity: "
+                    name="severity"
+                    defaultValue="Normal"
+                    direction="row"
+                    marginTop="0.5em"
+                    marginBottom="0.5em"
+                    isDisabled
+                  >
+                    <Radio value="Normal">Normal</Radio>
+                    <Radio value="High">High</Radio>
+                  </RadioGroupField>
+                  <TextField
+                    placeholder=""
+                    label="Reason for High:"
+                    name="reason_for_high"
+                    errorMessage="There is an error"
+                    marginTop="0.5em"
+                    marginBottom="0.5em"
+                    isDisabled
+                  />
+                  <TextAreaField
+                    label="Description of the issue:"
+                    name="notes_request"
+                    placeholder=""
+                    rows={4}
+                    marginTop="0.5em"
+                    marginBottom="0.5em"
+                    isDisabled
+                  />
+                  <TextField
+                    placeholder=""
+                    label="Submitted:"
+                    name="time_requested"
+                    errorMessage="There is an error"
+                    marginTop="0.5em"
+                    marginBottom="0.5em"
+                    isDisabled
+                  />
+                  <RadioGroupField
+                    legend="Status: "
+                    name="status"
+                    defaultValue="Submitted"
+                    direction="row"
+                    marginTop="0.5em"
+                    marginBottom="0.5em"
+                    onChange={(e) => setStatus(e.target.value)}
+                  >
+                    <Radio value="Submitted">Submitted</Radio>
+                    <Radio value="InProgress">In Progress</Radio>
+                    <Radio value="Completed">Completed</Radio>
+                  </RadioGroupField>
+                  <TextAreaField
+                    label="Notes:"
+                    name="notes_resolution"
+                    placeholder=""
+                    rows={4}
+                    marginTop="0.5em"
+                    marginBottom="0.5em"
+                    onBlur={e => {
+                      e.stopPropagation();
+                      e.nativeEvent.stopImmediatePropagation();
+                      setNotesResolution(e.target.value);
+                    }}
+                  />
+                  <Button
+                    variation="primary"
+                    onClick={updateTicket}
+                  >
+                    Submit Resolution
+                  </Button>
+                  <Text
+                    marginTop="0.5em"
+                    marginBottom="0.5em"
+                  >
+                    Resolved: 2024-08-09 03:30PM PDT
+                  </Text>
+                </Card>
               </dialog>
             ) : null}
           </Card>
