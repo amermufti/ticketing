@@ -237,7 +237,7 @@ function App() {
             marginTop="0.3em"
             marginBottom="0.3em"
           >
-            { true || !drilledDown ? (
+            { true  || !drilledDown ? (
               <ThemeProvider theme={theme} colorMode="light">
                 <Table highlightOnHover variation="striped">
                   <TableHead>
