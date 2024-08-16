@@ -257,7 +257,11 @@ function App() {
                     {tickets.map((ticket) => (
                       <TableRow
                         key={ticket.id}
-                        onClick={setDrilledDown(true)}
+                        onClick={e => { 
+                            setDrilledDown(true);
+                            console.log('it produced this event:', e)
+                          }
+                        }
                       >
                         <TableCell>{ticket.requester_name}</TableCell>
                         <TableCell>{ticket.requester_email}</TableCell>
