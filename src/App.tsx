@@ -281,7 +281,7 @@ function App() {
             {drilledDown ? (
               <Card
                 variation="elevated"
-                width="100%"
+                width="50em"
                 marginTop="0.3em"
                 marginBottom="0.3em"
               >
@@ -345,7 +345,6 @@ function App() {
                   direction="row"
                   marginTop="0.5em"
                   marginBottom="0.5em"
-                  isDisabled={status === '' ? true : false}
                   onChange={(e) => setStatus(e.target.value)}
                 >
                   <Radio value="Submitted">Submitted</Radio>
