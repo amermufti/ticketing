@@ -121,7 +121,16 @@ function App() {
           columnStart="1"
           columnEnd="-1"
         >
-          Header
+          <Image
+            alt="Wagstaff Law Firm logo"
+            src="/WLFLogo1.png"
+            objectFit="initial"
+            objectPosition="50% 50%"
+            backgroundColor="initial"
+            height="5em"
+            width="75%"
+            opacity="100%"
+          />
         </Card>
         <Card
           columnStart="1"
