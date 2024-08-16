@@ -272,7 +272,8 @@ function App() {
                       onClick={e => {
                         const dialog = document.querySelector("dialog");
                         if (dialog != null) {
-                          console.log('AAA:', tickets[e.target.parentElement.rowIndex-1]);
+                          console.log('AAA:', e.target);
+                          console.log('THIS:', this);
                           //setRequesterName(ticket.requester_name);
                           dialog.showModal();
                         }
