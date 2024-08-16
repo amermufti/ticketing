@@ -123,7 +123,7 @@ function App() {
         >
           <Image
             alt="Wagstaff Law Firm logo"
-            src="/WLFLogo1.png"
+            src="./assets/WLFLogo1.png"
             objectFit="initial"
             objectPosition="50% 50%"
             backgroundColor="initial"
