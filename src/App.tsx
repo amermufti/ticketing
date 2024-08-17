@@ -383,7 +383,7 @@ const columns = useMemo<MRT_ColumnDef<Person>[]>(
                       onClick={e => {
                         const dialog = document.querySelector("dialog");
                         if (dialog != null) {
-                          console.log('AAA:', ticketIndex); //e.target);
+                          console.log('AAA:', ticketIndex);  //e.target);
                           //console.log('THIS:', this);
                           //setRequesterName(ticket.requester_name);
                           dialog.showModal();
