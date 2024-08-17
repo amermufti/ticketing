@@ -421,11 +421,10 @@ function App() {
                 </Button>
               </Card>
             </dialog>
+            <MaterialReactTable
+              table={table}
+            />
           </Card>
-          <MaterialReactTable 
-                table={table}
-          />
-
         }
         <Card
           columnStart="2"
