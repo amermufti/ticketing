@@ -218,8 +218,8 @@ const columns = useMemo<MRT_ColumnDef<Person>[]>(
 );
 
   const table = useMaterialReactTable({
-    //columns, 
-    //data, //data must be memoized or stable (useState, useMemo, defined outside of this component, etc.)
+    columns, 
+    data, //data must be memoized or stable (useState, useMemo, defined outside of this component, etc.)
     enableFacetedValues: true,
     enableGlobalFilter: false,
   });
