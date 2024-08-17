@@ -1,9 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
-import {
-  MaterialReactTable,
-  useMaterialReactTable,
-  type MRT_ColumnDef,
-} from 'material-react-table';
+import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
 import {
@@ -73,7 +68,7 @@ function App() {
   //const [timeResolved, setTimeResolved] = useState('');
   const [isAdmin, setIsAdmin] = useState(false);
   const [submittedActive, setSubmittedActive] = useState(false);
-  //const [pickedRow, setPickedRow] = useState(null);
+  const [pickedRow, setPickedRow] = useState(-1);
 
   useEffect(() => {
     let search = window.location.search;
@@ -103,7 +98,7 @@ function App() {
         status: status,
         notes_resolution: notesResolution,
         time_resolved: ''
-      });
+    });
   }
   function updateTicket() {
     setStatus('Completed');
@@ -126,109 +121,8 @@ function App() {
       });
   }
 
-  
-//example data type
-type Person = {
-  name: {
-    firstName: string;
-    lastName: string;
-  };
-  address: string;
-  city: string;
-  state: string;
-};
-
-//nested data is ok, see accessorKeys in ColumnDef below
-const data: Person[] = [
-  {
-    name: {
-      firstName: 'John',
-      lastName: 'Doe',
-    },
-    address: '261 Erdman Ford',
-    city: 'East Daphne',
-    state: 'Kentucky',
-  },
-  {
-    name: {
-      firstName: 'Jane',
-      lastName: 'Doe',
-    },
-    address: '769 Dominic Grove',
-    city: 'Columbus',
-    state: 'Ohio',
-  },
-  {
-    name: {
-      firstName: 'Joe',
-      lastName: 'Doe',
-    },
-    address: '566 Brakus Inlet',
-    city: 'South Linda',
-    state: 'West Virginia',
-  },
-  {
-    name: {
-      firstName: 'Kevin',
-      lastName: 'Vandy',
-    },
-    address: '722 Emie Stream',
-    city: 'Lincoln',
-    state: 'Nebraska',
-  },
-  {
-    name: {
-      firstName: 'Joshua',
-      lastName: 'Rolluffs',
-    },
-    address: '32188 Larkin Turnpike',
-    city: 'Omaha',
-    state: 'Nebraska',
-  },
-];
-
-const columns = useMemo<MRT_ColumnDef<Person>[]>(
-  () => [
-    {
-      accessorKey: 'name.firstName', //access nested data with dot notation
-      header: 'First Name',
-      size: 150,
-    },
-    {
-      accessorKey: 'name.lastName',
-      header: 'Last Name',
-      size: 150,
-    },
-    {
-      accessorKey: 'address', //normal accessorKey
-      header: 'Address',
-      size: 200,
-    },
-    {
-      accessorKey: 'city',
-      header: 'City',
-      size: 150,
-    },
-    {
-      accessorKey: 'state',
-      header: 'State',
-      size: 150,
-    },
-  ],
-  [],
-);
-
-  const table = useMaterialReactTable({
-    columns, 
-    data, //data must be memoized or stable (useState, useMemo, defined outside of this component, etc.)
-  });
-  
   return (
     <main>
-            <MaterialReactTable
-              table={table}
-            />
-
       <Grid
         columnGap="0.5rem"
         rowGap="0.5rem"
@@ -383,8 +277,7 @@ const columns = useMemo<MRT_ColumnDef<Person>[]>(
                         const dialog = document.querySelector("dialog");
                         if (dialog != null) {
                           console.log('AAA:', ticketIndex);  //e.target);
-                          //console.log('THIS:', this);
-                          //setRequesterName(ticket.requester_name);
+                          setPickedRow(ticketIndex);
                           dialog.showModal();
                         }
                         console.log('it produced this event:', e)
@@ -416,7 +309,7 @@ const columns = useMemo<MRT_ColumnDef<Person>[]>(
                   placeholder=""
                   label="Requestor Name:"
                   name="requester_name"
-                  defaultValue={tickets != null && tickets[0] != null ? (tickets[0].requester_name as string) : ''}
+                  defaultValue={pickedRow > -1 ? (tickets[pickedRow].requester_name as string) : ''}
                   errorMessage="There is an error"
                   marginTop="0.5em"
                   marginBottom="0.5em"
