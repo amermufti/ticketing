@@ -126,8 +126,8 @@ function App() {
   let columns=[];
   let data=[];
   const table = useMaterialReactTable({
-    columns, 
-    data, //data must be memoized or stable (useState, useMemo, defined outside of this component, etc.)
+    //columns, 
+    //data, //data must be memoized or stable (useState, useMemo, defined outside of this component, etc.)
     enableFacetedValues: true,
     enableGlobalFilter: false,
     showGlobalFilter: false,
