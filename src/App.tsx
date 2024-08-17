@@ -123,8 +123,6 @@ function App() {
       });
   }
 
-  let columns=[];
-  let data=[];
   const table = useMaterialReactTable({
     //columns, 
     //data, //data must be memoized or stable (useState, useMemo, defined outside of this component, etc.)
