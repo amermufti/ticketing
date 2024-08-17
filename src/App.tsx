@@ -128,8 +128,6 @@ function App() {
     //data, //data must be memoized or stable (useState, useMemo, defined outside of this component, etc.)
     enableFacetedValues: true,
     enableGlobalFilter: false,
-    showGlobalFilter: false,
-    positionGlobalFilter: 'left'
   });
   
   return (
