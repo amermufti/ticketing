@@ -1,4 +1,8 @@
 import { useEffect, useState } from "react";
+import {
+  MaterialReactTable,
+  useMaterialReactTable,
+} from 'material-react-table';
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
 import {
@@ -6,10 +10,10 @@ import {
   TextAreaField,
   RadioGroupField,
   Radio,
-  Card, 
+  Card,
   Grid,
-  Message, 
-  Image, 
+  Message,
+  Image,
   //Badge, 
   //StepperField, 
   Button,
@@ -19,7 +23,7 @@ import {
   TableCell,
   TableBody,
   ThemeProvider,
-  Theme,  
+  Theme,
 } from "@aws-amplify/ui-react";
 import '@aws-amplify/ui-react/styles.css';
 import logo from './assets/WLFLogo1.png';
@@ -71,7 +75,7 @@ function App() {
   useEffect(() => {
     let search = window.location.search;
     let params = new URLSearchParams(search);
-    let foo = params.get('pick');    
+    let foo = params.get('pick');
     if (foo != null && foo === 'admin') {
       setIsAdmin(true);
     }
@@ -86,16 +90,17 @@ function App() {
     setTimeRequested(timeReq);
     setSubmittedActive(true);
     client.models.Ticket.create(
-      { requester_name: requesterName,
+      {
+        requester_name: requesterName,
         requester_email: requesterEmail,
         severity: severity,
         reason_for_high: reasonForHigh,
         notes_request: notesRequest,
         time_requested: timeReq,
-        status: status, 
+        status: status,
         notes_resolution: notesResolution,
         time_resolved: ''
-        });
+      });
   }
   function updateTicket() {
     setStatus('Completed');
@@ -105,7 +110,8 @@ function App() {
     }
     let timeRes = new Date().toLocaleString('en-US', { timeZone: 'America/Denver' });
     client.models.Ticket.create(
-      { requester_name: requesterName,
+      {
+        requester_name: requesterName,
         requester_email: requesterEmail,
         severity: severity,
         reason_for_high: reasonForHigh,
@@ -114,9 +120,18 @@ function App() {
         status: status,
         notes_resolution: notesResolution,
         time_resolved: timeRes
-        });
+      });
   }
 
+  const table = useMaterialReactTable({
+    columns, 
+    data, //data must be memoized or stable (useState, useMemo, defined outside of this component, etc.)
+    enableFacetedValues: true,
+    enableGlobalFilter: false,
+    showGlobalFilter: false,
+    positionGlobalFilter: 'left'
+  });
+  
   return (
     <main>
       <Grid
@@ -295,118 +310,122 @@ function App() {
                 </TableBody>
               </Table>
             </ThemeProvider>
-              <dialog>
-                <Card
-                  variation="elevated"
-                  width="50em"
-                  marginTop="0.3em"
-                  marginBottom="0.3em"
+            <dialog>
+              <Card
+                variation="elevated"
+                width="50em"
+                marginTop="0.3em"
+                marginBottom="0.3em"
+              >
+                <TextField
+                  placeholder=""
+                  label="Requestor Name:"
+                  name="requester_name"
+                  defaultValue={requesterName}
+                  errorMessage="There is an error"
+                  marginTop="0.5em"
+                  marginBottom="0.5em"
+                  isDisabled
+                />
+                <TextField
+                  placeholder=""
+                  label="Requestor Email:"
+                  name="requester_email"
+                  errorMessage="There is an error"
+                  marginTop="0.5em"
+                  marginBottom="0.5em"
+                  isDisabled
+                />
+                <RadioGroupField
+                  legend="Severity: "
+                  name="severity"
+                  defaultValue="Normal"
+                  direction="row"
+                  marginTop="0.5em"
+                  marginBottom="0.5em"
+                  isDisabled
                 >
-                  <TextField
-                    placeholder=""
-                    label="Requestor Name:"
-                    name="requester_name"
-                    defaultValue={requesterName}
-                    errorMessage="There is an error"
-                    marginTop="0.5em"
-                    marginBottom="0.5em"
-                    isDisabled
-                  />
-                  <TextField
-                    placeholder=""
-                    label="Requestor Email:"
-                    name="requester_email"
-                    errorMessage="There is an error"
-                    marginTop="0.5em"
-                    marginBottom="0.5em"
-                    isDisabled
-                  />
-                  <RadioGroupField
-                    legend="Severity: "
-                    name="severity"
-                    defaultValue="Normal"
-                    direction="row"
-                    marginTop="0.5em"
-                    marginBottom="0.5em"
-                    isDisabled
-                  >
-                    <Radio value="Normal">Normal</Radio>
-                    <Radio value="High">High</Radio>
-                  </RadioGroupField>
-                  <TextField
-                    placeholder=""
-                    label="Reason for High:"
-                    name="reason_for_high"
-                    errorMessage="There is an error"
-                    marginTop="0.5em"
-                    marginBottom="0.5em"
-                    isDisabled
-                  />
-                  <TextAreaField
-                    label="Description of the issue:"
-                    name="notes_request"
-                    placeholder=""
-                    rows={4}
-                    marginTop="0.5em"
-                    marginBottom="0.5em"
-                    isDisabled
-                  />
-                  <TextField
-                    placeholder=""
-                    label="Submitted:"
-                    name="time_requested"
-                    errorMessage="There is an error"
-                    marginTop="0.5em"
-                    marginBottom="0.5em"
-                    isDisabled
-                  />
-                  <RadioGroupField
-                    legend="Status: "
-                    name="status"
-                    defaultValue="Submitted"
-                    direction="row"
-                    marginTop="0.5em"
-                    marginBottom="0.5em"
-                    onChange={(e) => setStatus(e.target.value)}
-                  >
-                    <Radio value="Submitted">Submitted</Radio>
-                    <Radio value="InProgress">In Progress</Radio>
-                    <Radio value="Completed">Completed</Radio>
-                  </RadioGroupField>
-                  <TextAreaField
-                    label="Notes:"
-                    name="notes_resolution"
-                    placeholder=""
-                    rows={4}
-                    marginTop="0.5em"
-                    marginBottom="0.5em"
-                    onBlur={e => {
-                      e.stopPropagation();
-                      e.nativeEvent.stopImmediatePropagation();
-                      setNotesResolution(e.target.value);
-                    }}
-                  />
-                  <Button
-                    variation="primary"
-                    onClick={updateTicket}
-                  >
-                    Submit Resolution
-                  </Button>
-                  <Button
-                    onClick={e => {
-                      const dialog = document.querySelector("dialog");
-                      if (dialog != null) {
-                        dialog.close();
-                      }
-                      console.log('it produced this event:', e)
+                  <Radio value="Normal">Normal</Radio>
+                  <Radio value="High">High</Radio>
+                </RadioGroupField>
+                <TextField
+                  placeholder=""
+                  label="Reason for High:"
+                  name="reason_for_high"
+                  errorMessage="There is an error"
+                  marginTop="0.5em"
+                  marginBottom="0.5em"
+                  isDisabled
+                />
+                <TextAreaField
+                  label="Description of the issue:"
+                  name="notes_request"
+                  placeholder=""
+                  rows={4}
+                  marginTop="0.5em"
+                  marginBottom="0.5em"
+                  isDisabled
+                />
+                <TextField
+                  placeholder=""
+                  label="Submitted:"
+                  name="time_requested"
+                  errorMessage="There is an error"
+                  marginTop="0.5em"
+                  marginBottom="0.5em"
+                  isDisabled
+                />
+                <RadioGroupField
+                  legend="Status: "
+                  name="status"
+                  defaultValue="Submitted"
+                  direction="row"
+                  marginTop="0.5em"
+                  marginBottom="0.5em"
+                  onChange={(e) => setStatus(e.target.value)}
+                >
+                  <Radio value="Submitted">Submitted</Radio>
+                  <Radio value="InProgress">In Progress</Radio>
+                  <Radio value="Completed">Completed</Radio>
+                </RadioGroupField>
+                <TextAreaField
+                  label="Notes:"
+                  name="notes_resolution"
+                  placeholder=""
+                  rows={4}
+                  marginTop="0.5em"
+                  marginBottom="0.5em"
+                  onBlur={e => {
+                    e.stopPropagation();
+                    e.nativeEvent.stopImmediatePropagation();
+                    setNotesResolution(e.target.value);
+                  }}
+                />
+                <Button
+                  variation="primary"
+                  onClick={updateTicket}
+                >
+                  Submit Resolution
+                </Button>
+                <Button
+                  onClick={e => {
+                    const dialog = document.querySelector("dialog");
+                    if (dialog != null) {
+                      dialog.close();
                     }
-                    }
-                  >
-                    Cancel
-                  </Button>
-                </Card>
-              </dialog>
+                    console.log('it produced this event:', e)
+                  }
+                  }
+                >
+                  Cancel
+                </Button>
+              </Card>
+            </dialog>
           </Card>
+          <MaterialReactTable 
+                table={table}
+          />
+
         }
         <Card
           columnStart="2"
