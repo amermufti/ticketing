@@ -59,6 +59,7 @@ const theme: Theme = {
   },
 };
 
+
 function App() {
   const [tickets, setTickets] = useState<Array<Schema["Ticket"]["type"]>>([]);
   const [requesterName, setRequesterName] = useState('');
