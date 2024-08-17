@@ -415,7 +415,7 @@ const columns = useMemo<MRT_ColumnDef<Person>[]>(
                   placeholder=""
                   label="Requestor Name:"
                   name="requester_name"
-                  defaultValue={tickets != null ? (tickets[0].requester_name as string) : ''}
+                  defaultValue={tickets != null && tickets[0] != null ? (tickets[0].requester_name as string) : ''}
                   errorMessage="There is an error"
                   marginTop="0.5em"
                   marginBottom="0.5em"
