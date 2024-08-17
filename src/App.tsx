@@ -224,6 +224,10 @@ const columns = useMemo<MRT_ColumnDef<Person>[]>(
   
   return (
     <main>
+            <MaterialReactTable
+              table={table}
+            />
+
       <Grid
         columnGap="0.5rem"
         rowGap="0.5rem"
@@ -511,9 +515,6 @@ const columns = useMemo<MRT_ColumnDef<Person>[]>(
                 </Button>
               </Card>
             </dialog>
-            <MaterialReactTable
-              table={table}
-            />
           </Card>
         }
         <Card
