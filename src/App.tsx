@@ -73,7 +73,7 @@ function App() {
   //const [timeResolved, setTimeResolved] = useState('');
   const [isAdmin, setIsAdmin] = useState(false);
   const [submittedActive, setSubmittedActive] = useState(false);
-  const [pickedRow, setPickedRow] = useState(null);
+  //const [pickedRow, setPickedRow] = useState(null);
 
   useEffect(() => {
     let search = window.location.search;
@@ -379,7 +379,6 @@ const columns = useMemo<MRT_ColumnDef<Person>[]>(
                   {tickets.map((ticket, ticketIndex) => (
                     <TableRow
                       key={ticket.id}
-                      id={ticketIndex}
                       onClick={e => {
                         const dialog = document.querySelector("dialog");
                         if (dialog != null) {
