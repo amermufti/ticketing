@@ -319,6 +319,7 @@ function App() {
                   placeholder=""
                   label="Requestor Email:"
                   name="requester_email"
+                  defaultValue={pickedRow > -1 ? (tickets[pickedRow].requester_email as string) : ''}
                   errorMessage="There is an error"
                   marginTop="0.5em"
                   marginBottom="0.5em"
@@ -327,7 +328,7 @@ function App() {
                 <RadioGroupField
                   legend="Severity: "
                   name="severity"
-                  defaultValue="Normal"
+                  defaultValue={pickedRow > -1 ? (tickets[pickedRow].severity as string) : ''}
                   direction="row"
                   marginTop="0.5em"
                   marginBottom="0.5em"
@@ -340,6 +341,7 @@ function App() {
                   placeholder=""
                   label="Reason for High:"
                   name="reason_for_high"
+                  defaultValue={pickedRow > -1 ? (tickets[pickedRow].reason_for_high as string) : ''}
                   errorMessage="There is an error"
                   marginTop="0.5em"
                   marginBottom="0.5em"
@@ -348,8 +350,8 @@ function App() {
                 <TextAreaField
                   label="Description of the issue:"
                   name="notes_request"
-                  placeholder=""
-                  rows={4}
+                  defaultValue={pickedRow > -1 ? (tickets[pickedRow].notes_request as string) : ''}
+                  rows={6}
                   marginTop="0.5em"
                   marginBottom="0.5em"
                   isDisabled
@@ -358,6 +360,7 @@ function App() {
                   placeholder=""
                   label="Submitted:"
                   name="time_requested"
+                  defaultValue={pickedRow > -1 ? (tickets[pickedRow].time_requested as string) : ''}
                   errorMessage="There is an error"
                   marginTop="0.5em"
                   marginBottom="0.5em"
@@ -380,7 +383,7 @@ function App() {
                   label="Notes:"
                   name="notes_resolution"
                   placeholder=""
-                  rows={4}
+                  rows={6}
                   marginTop="0.5em"
                   marginBottom="0.5em"
                   onBlur={e => {
