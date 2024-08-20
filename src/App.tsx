@@ -56,6 +56,7 @@ const theme: Theme = {
 
 
 function App() {
+  const [ticketId, setTicketId] = useState('');
   const [tickets, setTickets] = useState<Array<Schema["Ticket"]["type"]>>([]);
   const [requesterName, setRequesterName] = useState('');
   const [requesterEmail, setRequesterEmail] = useState('');
@@ -89,6 +90,7 @@ function App() {
     setSubmittedActive(true);
     client.models.Ticket.create(
       {
+        id: requesterName+' '+timeReq,
         requester_name: requesterName,
         requester_email: requesterEmail,
         severity: severity,
@@ -107,14 +109,9 @@ function App() {
       dialog.close();
     }
     let timeRes = new Date().toLocaleString('en-US', { timeZone: 'America/Denver' });
-    client.models.Ticket.create(
+    client.models.Ticket.update(
       {
-        requester_name: requesterName,
-        requester_email: requesterEmail,
-        severity: severity,
-        reason_for_high: reasonForHigh,
-        notes_request: notesRequest,
-        time_requested: timeRequested,
+        id: ticketId,
         status: status,
         notes_resolution: notesResolution,
         time_resolved: timeRes
@@ -278,6 +275,7 @@ function App() {
                         if (dialog != null) {
                           console.log('AAA:', ticketIndex);  //e.target);
                           setPickedRow(ticketIndex);
+                          setTicketId(ticket.id);
                           dialog.showModal();
                         }
                         console.log('it produced this event:', e)
@@ -361,6 +359,16 @@ function App() {
                   label="Submitted:"
                   name="time_requested"
                   defaultValue={pickedRow > -1 ? (tickets[pickedRow].time_requested as string) : ''}
+                  errorMessage="There is an error"
+                  marginTop="0.5em"
+                  marginBottom="0.5em"
+                  isDisabled
+                />
+                <TextField
+                  placeholder=""
+                  label="Ticket Id:"
+                  name="id"
+                  defaultValue={pickedRow > -1 ? (tickets[pickedRow].id as string) : ''}
                   errorMessage="There is an error"
                   marginTop="0.5em"
                   marginBottom="0.5em"
