@@ -99,7 +99,7 @@ function App() {
         reason_for_high: reasonForHigh,
         notes_request: notesRequest,
         time_requested: timeReq,
-        status: status,
+        status: 'Submitted',
         notes_resolution: notesResolution,
         time_resolved: ''
     });
