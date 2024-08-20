@@ -390,6 +390,7 @@ function App() {
                 <TextAreaField
                   label="Notes:"
                   name="notes_resolution"
+                  defaultValue={pickedRow > -1 ? (tickets[pickedRow].notes_resolution as string) : ''}
                   placeholder=""
                   rows={6}
                   marginTop="0.5em"
