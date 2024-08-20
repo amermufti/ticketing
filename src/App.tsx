@@ -254,7 +254,7 @@ function App() {
           >
             <SwitchField
               isDisabled={false}
-              label="Include Completed"
+              label="Include Completed Tickets"
               labelPosition="start"
               onChange={(e) => {
                 setIncludeCompleted(e.target.checked);
@@ -299,10 +299,14 @@ function App() {
                         <TableCell>{ticket.requester_email}</TableCell>
                         <TableCell>{ticket.severity}</TableCell>
                         <TableCell>{ticket.reason_for_high}</TableCell>
-                        <TableCell>{ticket.notes_request}</TableCell>
+                        <TableCell
+                          sx={{minWidth: '10em'}}
+                        >{ticket.notes_request}</TableCell>
                         <TableCell>{ticket.time_requested}</TableCell>
                         <TableCell>{ticket.status}</TableCell>
-                        <TableCell>{ticket.notes_resolution}</TableCell>
+                        <TableCell
+                          sx={{minWidth: '10em'}}
+                        >{ticket.notes_resolution}</TableCell>
                         <TableCell>{ticket.time_resolved}</TableCell>
                       </TableRow>
                     ))}
