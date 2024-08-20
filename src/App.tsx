@@ -272,7 +272,7 @@ function App() {
                     <TableCell as="th">Submitted</TableCell>
                     <TableCell as="th">Status</TableCell>
                     <TableCell as="th">Notes</TableCell>
-                    <TableCell as="th">Resolved</TableCell>
+                    <TableCell as="th">Status Updated</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
