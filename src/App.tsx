@@ -70,6 +70,7 @@ function App() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [submittedActive, setSubmittedActive] = useState(false);
   const [pickedRow, setPickedRow] = useState(-1);
+  const [includeCompleted, setIncludeCompleted] = useState(false);
 
   useEffect(() => {
     let search = window.location.search;
@@ -255,6 +256,9 @@ function App() {
               isDisabled={false}
               label="Include Completed"
               labelPosition="start"
+              onChange={(e) => {
+                setIncludeCompleted(e.target.checked);
+              }}
             />
             <ThemeProvider theme={theme} colorMode="light">
               <Table highlightOnHover variation="striped">
@@ -272,32 +276,36 @@ function App() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {tickets.map((ticket, ticketIndex) => (
-                    <TableRow
-                      key={ticket.id}
-                      onClick={e => {
-                        const dialog = document.querySelector("dialog");
-                        if (dialog != null) {
-                          console.log('AAA:', ticketIndex);  //e.target);
-                          setPickedRow(ticketIndex);
-                          setTicketId(ticket.id);
-                          dialog.showModal();
+                  {tickets
+                    .filter(
+                      ticket => includeCompleted === true || ticket.status !== 'Completed'
+                    )
+                    .map((ticket, ticketIndex) => (
+                      <TableRow
+                        key={ticket.id}
+                        onClick={e => {
+                          const dialog = document.querySelector("dialog");
+                          if (dialog != null) {
+                            console.log('AAA:', ticketIndex);  //e.target);
+                            setPickedRow(ticketIndex);
+                            setTicketId(ticket.id);
+                            dialog.showModal();
+                          }
+                          console.log('it produced this event:', e)
                         }
-                        console.log('it produced this event:', e)
-                      }
-                      }
-                    >
-                      <TableCell>{ticket.requester_name}</TableCell>
-                      <TableCell>{ticket.requester_email}</TableCell>
-                      <TableCell>{ticket.severity}</TableCell>
-                      <TableCell>{ticket.reason_for_high}</TableCell>
-                      <TableCell>{ticket.notes_request}</TableCell>
-                      <TableCell>{ticket.time_requested}</TableCell>
-                      <TableCell>{ticket.status}</TableCell>
-                      <TableCell>{ticket.notes_resolution}</TableCell>
-                      <TableCell>{ticket.time_resolved}</TableCell>
-                    </TableRow>
-                  ))}
+                        }
+                      >
+                        <TableCell>{ticket.requester_name}</TableCell>
+                        <TableCell>{ticket.requester_email}</TableCell>
+                        <TableCell>{ticket.severity}</TableCell>
+                        <TableCell>{ticket.reason_for_high}</TableCell>
+                        <TableCell>{ticket.notes_request}</TableCell>
+                        <TableCell>{ticket.time_requested}</TableCell>
+                        <TableCell>{ticket.status}</TableCell>
+                        <TableCell>{ticket.notes_resolution}</TableCell>
+                        <TableCell>{ticket.time_resolved}</TableCell>
+                      </TableRow>
+                    ))}
                 </TableBody>
               </Table>
             </ThemeProvider>
