@@ -300,12 +300,12 @@ function App() {
                         <TableCell>{ticket.severity}</TableCell>
                         <TableCell>{ticket.reason_for_high}</TableCell>
                         <TableCell
-                          sx={{minWidth: '10em'}}
+                          style={{minWidth: '10em'}}
                         >{ticket.notes_request}</TableCell>
                         <TableCell>{ticket.time_requested}</TableCell>
                         <TableCell>{ticket.status}</TableCell>
                         <TableCell
-                          sx={{minWidth: '10em'}}
+                          style={{minWidth: '10em'}}
                         >{ticket.notes_resolution}</TableCell>
                         <TableCell>{ticket.time_resolved}</TableCell>
                       </TableRow>
