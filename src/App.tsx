@@ -11,7 +11,7 @@ import {
   Message,
   Image,
   //Badge, 
-  //StepperField, 
+  SwitchField, 
   Button,
   Table,
   TableHead,
@@ -251,6 +251,11 @@ function App() {
             marginTop="0.3em"
             marginBottom="0.3em"
           >
+            <SwitchField
+              isDisabled={false}
+              label="Include Completed"
+              labelPosition="start"
+            />
             <ThemeProvider theme={theme} colorMode="light">
               <Table highlightOnHover variation="striped">
                 <TableHead>
@@ -377,7 +382,7 @@ function App() {
                 <RadioGroupField
                   legend="Status: "
                   name="status"
-                  defaultValue="Submitted"
+                  defaultValue={pickedRow > -1 ? (tickets[pickedRow].status as string) : ''}
                   direction="row"
                   marginTop="0.5em"
                   marginBottom="0.5em"
