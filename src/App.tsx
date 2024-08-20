@@ -48,6 +48,7 @@ const theme: Theme = {
 
         data: {
           fontWeight: { value: '{fontWeights.normal}' },
+          fontSize: { value: '{fontSizes.medium}' },
         },
       },
     },
@@ -137,7 +138,7 @@ function App() {
             objectFit="initial"
             objectPosition="50% 50%"
             backgroundColor="initial"
-            height="5em"
+            height="4em"
             opacity="100%"
           />
         </Card>
@@ -300,12 +301,12 @@ function App() {
                         <TableCell>{ticket.severity}</TableCell>
                         <TableCell>{ticket.reason_for_high}</TableCell>
                         <TableCell
-                          style={{minWidth: '10em'}}
+                          style={{minWidth: '20em'}}
                         >{ticket.notes_request}</TableCell>
                         <TableCell>{ticket.time_requested}</TableCell>
                         <TableCell>{ticket.status}</TableCell>
                         <TableCell
-                          style={{minWidth: '10em'}}
+                          style={{minWidth: '20em'}}
                         >{ticket.notes_resolution}</TableCell>
                         <TableCell>{ticket.time_resolved}</TableCell>
                       </TableRow>
