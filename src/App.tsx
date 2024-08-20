@@ -67,7 +67,6 @@ function App() {
   const [timeRequested, setTimeRequested] = useState('');
   const [status, setStatus] = useState('');
   const [notesResolution, setNotesResolution] = useState('');
-  //const [timeResolved, setTimeResolved] = useState('');
   const [isAdmin, setIsAdmin] = useState(false);
   const [submittedActive, setSubmittedActive] = useState(false);
   const [pickedRow, setPickedRow] = useState(-1);
@@ -395,7 +394,7 @@ function App() {
                 <RadioGroupField
                   legend="Status: "
                   name="status"
-                  defaultValue={pickedRow > -1 ? (tickets[pickedRow].status as string) : ''}
+                  value={pickedRow > -1 ? (tickets[pickedRow].status as string) : ''}
                   direction="row"
                   marginTop="0.5em"
                   marginBottom="0.5em"
@@ -408,7 +407,7 @@ function App() {
                 <TextAreaField
                   label="Notes:"
                   name="notes_resolution"
-                  defaultValue={pickedRow > -1 ? (tickets[pickedRow].notes_resolution as string) : ''}
+                  value={pickedRow > -1 ? (tickets[pickedRow].notes_resolution as string) : ''}
                   placeholder=""
                   rows={6}
                   marginTop="0.5em"
