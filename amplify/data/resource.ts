@@ -23,7 +23,6 @@ const schema = a.schema({
 const schema = a.schema({
   Ticket: a
     .model({
-      /*
       requester_name: a.string(),
       requester_email: a.string(),
       severity: a.string(),
@@ -33,8 +32,6 @@ const schema = a.schema({
       status: a.string(),
       notes_resolution: a.string(),
       time_resolved: a.string(),
-      */
-     dummy: a.string(),
     })
     .authorization((allow) => [allow.publicApiKey()]),
 });
