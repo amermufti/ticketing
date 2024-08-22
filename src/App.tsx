@@ -101,6 +101,7 @@ function App() {
       notes_resolution: notesResolution,
       time_resolved: timeReq
     };
+    console.log(created);
     client.models.ticketing.create(created);
   }
   function updateTicket() {
@@ -116,6 +117,7 @@ function App() {
       notes_resolution: notesResolution,
       time_resolved: timeRes
     };
+    console.log(updated);
     client.models.ticketing.update(updated);
   }
 
