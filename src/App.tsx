@@ -89,19 +89,19 @@ function App() {
     let timeReq = new Date().toISOString().replace("T"," ").substring(0, 19);
     setTimeRequested(timeReq);
     setSubmittedActive(true);
-    client.models.ticketing.create(
-      {
-        id: 100, // requesterName+' '+timeReq,
-        requester_name: requesterName,
-        requester_email: requesterEmail,
-        severity: severity,
-        reason_for_high: reasonForHigh,
-        notes_request: notesRequest,
-        time_requested: timeReq,
-        status: 'Submitted',
-        notes_resolution: notesResolution,
-        time_resolved: timeReq
-    });
+    let created = {
+      id: 100, // requesterName+' '+timeReq,
+      requester_name: requesterName,
+      requester_email: requesterEmail,
+      severity: severity,
+      reason_for_high: reasonForHigh,
+      notes_request: notesRequest,
+      time_requested: timeReq,
+      status: 'Submitted',
+      notes_resolution: notesResolution,
+      time_resolved: timeReq
+    };
+    client.models.ticketing.create(created);
   }
   function updateTicket() {
     setStatus('Completed');
@@ -110,13 +110,13 @@ function App() {
       dialog.close();
     }
     let timeRes = new Date().toISOString().replace("T"," ").substring(0, 19)
-    client.models.ticketing.update(
-      {
-        id: ticketId,
-        status: status,
-        notes_resolution: notesResolution,
-        time_resolved: timeRes
-      });
+    let updated = {
+      id: ticketId,
+      status: status,
+      notes_resolution: notesResolution,
+      time_resolved: timeRes
+    };
+    client.models.ticketing.update(updated);
   }
 
   return (
