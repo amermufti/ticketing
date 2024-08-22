@@ -100,7 +100,7 @@ function App() {
         time_requested: timeReq,
         status: 'Submitted',
         notes_resolution: notesResolution,
-        time_resolved: ''
+        time_resolved: timeReq
     });
   }
   function updateTicket() {
