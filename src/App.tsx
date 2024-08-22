@@ -57,7 +57,7 @@ const theme: Theme = {
 
 
 function App() {
-  const [ticketId, setTicketId] = useState('');
+  const [ticketId, setTicketId] = useState(0);
   const [tickets, setTickets] = useState<Array<Schema["ticketing"]["type"]>>([]);
   const [requesterName, setRequesterName] = useState('');
   const [requesterEmail, setRequesterEmail] = useState('');
@@ -91,7 +91,7 @@ function App() {
     setSubmittedActive(true);
     client.models.ticketing.create(
       {
-        id: requesterName+' '+timeReq,
+        id: 100, // requesterName+' '+timeReq,
         requester_name: requesterName,
         requester_email: requesterEmail,
         severity: severity,
@@ -385,7 +385,7 @@ function App() {
                   placeholder=""
                   label="Ticket Id:"
                   name="id"
-                  defaultValue={pickedRow > -1 ? (tickets[pickedRow].id as string) : ''}
+                  defaultValue={pickedRow > -1 ? (tickets[pickedRow].id as integer) : ''}
                   errorMessage="There is an error"
                   marginTop="0.5em"
                   marginBottom="0.5em"
