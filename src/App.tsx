@@ -86,7 +86,7 @@ function App() {
 
   function createTicket() {
     setStatus('Submitted');
-    let timeReq = new Date().toLocaleString('en-US', { timeZone: 'America/Denver' });
+    let timeReq = new Date().toISOString().replace("T"," ").substring(0, 19);
     setTimeRequested(timeReq);
     setSubmittedActive(true);
     client.models.ticketing.create(
@@ -109,7 +109,7 @@ function App() {
     if (dialog != null) {
       dialog.close();
     }
-    let timeRes = new Date().toLocaleString('en-US', { timeZone: 'America/Denver' });
+    let timeRes = new Date().toISOString().replace("T"," ").substring(0, 19)
     client.models.ticketing.update(
       {
         id: ticketId,
