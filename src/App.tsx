@@ -58,7 +58,7 @@ const theme: Theme = {
 
 function App() {
   const [ticketId, setTicketId] = useState(0);
-  const [tickets, setTickets] = useState<Array<Schema["ticketing"]["type"]>>([]);
+  const [tickets, setTickets] = useState<Array<Schema["Ticket"]["type"]>>([]);
   const [requesterName, setRequesterName] = useState('');
   const [requesterEmail, setRequesterEmail] = useState('');
   const [severity, setSeverity] = useState('Normal');
@@ -79,14 +79,14 @@ function App() {
     if (foo != null && foo === 'admin') {
       setIsAdmin(true);
     }
-    const { data: tickets } = await client.models.ticketing.list();
-    setTickets([...data.items]);
     /*
-    client.models.ticketing.observeQuery().subscribe({
+    const { data: tickets } = await client.models.Ticket.list();
+    setTickets([...data.items]);
+    */
+    client.models.Ticket.observeQuery().subscribe({
       next: (data) => setTickets([...data.items]),
     });
-    */
-  }, []);
+    }, []);
 
   function createTicket() {
     setStatus('Submitted');
@@ -106,7 +106,7 @@ function App() {
       time_resolved: timeReq
     };
     console.log(created);
-    client.models.ticketing.create(created);
+    client.models.Ticket.create(created);
   }
   function updateTicket() {
     setStatus('Completed');
@@ -122,7 +122,7 @@ function App() {
       time_resolved: timeRes
     };
     console.log(updated);
-    client.models.ticketing.update(updated);
+    client.models.Ticket.update(updated);
   }
 
   return (

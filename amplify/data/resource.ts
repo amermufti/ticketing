@@ -25,14 +25,12 @@ const schema = a.schema({
     .model({
       requester_name: a.string(),
       requester_email: a.string(),
-      /*
       severity: a.string(),
       reason_for_high: a.string(),
       notes_request: a.string(),
       time_requested: a.string(),
       status: a.string(),
       notes_resolution: a.string(),
-      */
       time_resolved: a.string(),
     })
     .authorization((allow) => [allow.publicApiKey()]),
