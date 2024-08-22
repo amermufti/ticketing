@@ -34,6 +34,7 @@ const schema = a.schema({
       notes_resolution: a.string(),
       time_resolved: a.string(),
       */
+     dummy: a.string(),
     })
     .authorization((allow) => [allow.publicApiKey()]),
 });
