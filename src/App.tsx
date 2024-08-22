@@ -385,7 +385,7 @@ function App() {
                   placeholder=""
                   label="Ticket Id:"
                   name="id"
-                  defaultValue={pickedRow > -1 ? (tickets[pickedRow].id as integer) : ''}
+                  defaultValue={pickedRow > -1 ? (tickets[pickedRow].id as number) : ''}
                   errorMessage="There is an error"
                   marginTop="0.5em"
                   marginBottom="0.5em"
