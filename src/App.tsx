@@ -58,7 +58,7 @@ const theme: Theme = {
 
 function App() {
   const [ticketId, setTicketId] = useState('');
-  const [tickets, setTickets] = useState<Array<Schema["Ticket"]["type"]>>([]);
+  const [tickets, setTickets] = useState<Array<Schema["ticketing"]["type"]>>([]);
   const [requesterName, setRequesterName] = useState('');
   const [requesterEmail, setRequesterEmail] = useState('');
   const [severity, setSeverity] = useState('Normal');
@@ -79,7 +79,7 @@ function App() {
     if (foo != null && foo === 'admin') {
       setIsAdmin(true);
     }
-    client.models.Ticket.observeQuery().subscribe({
+    client.models.ticketing.observeQuery().subscribe({
       next: (data) => setTickets([...data.items]),
     });
   }, []);
@@ -89,7 +89,7 @@ function App() {
     let timeReq = new Date().toLocaleString('en-US', { timeZone: 'America/Denver' });
     setTimeRequested(timeReq);
     setSubmittedActive(true);
-    client.models.Ticket.create(
+    client.models.ticketing.create(
       {
         id: requesterName+' '+timeReq,
         requester_name: requesterName,
@@ -110,7 +110,7 @@ function App() {
       dialog.close();
     }
     let timeRes = new Date().toLocaleString('en-US', { timeZone: 'America/Denver' });
-    client.models.Ticket.update(
+    client.models.ticketing.update(
       {
         id: ticketId,
         status: status,
