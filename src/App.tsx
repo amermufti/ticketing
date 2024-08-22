@@ -79,9 +79,13 @@ function App() {
     if (foo != null && foo === 'admin') {
       setIsAdmin(true);
     }
+    const { data: tickets } = await client.models.ticketing.list();
+    setTickets([...data.items]);
+    /*
     client.models.ticketing.observeQuery().subscribe({
       next: (data) => setTickets([...data.items]),
     });
+    */
   }, []);
 
   function createTicket() {
