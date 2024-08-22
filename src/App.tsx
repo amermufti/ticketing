@@ -57,7 +57,7 @@ const theme: Theme = {
 
 
 function App() {
-  const [ticketId, setTicketId] = useState(0);
+  const [ticketId, setTicketId] = useState('');
   const [tickets, setTickets] = useState<Array<Schema["Ticket"]["type"]>>([]);
   const [requesterName, setRequesterName] = useState('');
   const [requesterEmail, setRequesterEmail] = useState('');
@@ -94,7 +94,7 @@ function App() {
     setTimeRequested(timeReq);
     setSubmittedActive(true);
     let created = {
-      id: 100, // requesterName+' '+timeReq,
+      id: requesterName+' '+timeReq,
       requester_name: requesterName,
       requester_email: requesterEmail,
       severity: severity,
@@ -103,7 +103,7 @@ function App() {
       time_requested: timeReq,
       status: 'Submitted',
       notes_resolution: notesResolution,
-      time_resolved: timeReq
+      time_resolved: ''
     };
     console.log(created);
     client.models.Ticket.create(created);
@@ -391,7 +391,7 @@ function App() {
                   placeholder=""
                   label="Ticket Id:"
                   name="id"
-                  defaultValue={pickedRow > -1 ? (tickets[pickedRow].id as number) : ''}
+                  defaultValue={pickedRow > -1 ? (tickets[pickedRow].id as string) : ''}
                   errorMessage="There is an error"
                   marginTop="0.5em"
                   marginBottom="0.5em"
