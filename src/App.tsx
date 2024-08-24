@@ -125,6 +125,34 @@ function App() {
     client.models.Ticket.update(updated);
   }
 
+  const ExportCSV = ({ data, fileName }) => {
+    const downloadCSV = () => {
+      // Convert the data array into a CSV string
+      const csvString = [
+        ["Id", "Requestor", "Email", "Severity", "Reason", "Issue", "Submitted", "Status", "Notes", "Status Updated"], // Specify your headers here
+        ...data.map(item => [item.id, item.requester_name, item.requester_email, item.severity, item.reason_for_high, item.notes_request, item.time_requested, item.status, item.notes_resolution, item.time_resolved]) // Map your data fields accordingly
+      ]
+      .map(row => row.join(","))
+      .join("\n");
+  
+      // Create a Blob from the CSV string
+      const blob = new Blob([csvString], { type: 'text/csv' });
+  
+      // Generate a download link and initiate the download
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = fileName || 'download.csv';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    };
+  
+    return <button onClick={downloadCSV}>Export CSV</button>;
+  };
+ 
+
   return (
     <main>
       <Grid
@@ -266,6 +294,8 @@ function App() {
                 setIncludeCompleted(e.target.checked);
               }}
             />
+            <ExportCSV data={tickets} fileName="TicketList.csv" />
+
             <ThemeProvider theme={theme} colorMode="light">
               <Table highlightOnHover variation="striped">
                 <TableHead>
