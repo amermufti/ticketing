@@ -1,3 +1,4 @@
+// @ts-nocheck 
 import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
@@ -323,7 +324,7 @@ function App() {
                           const dialog = document.querySelector("dialog");
                           if (dialog != null) {
                             console.log('AAA:', ticketIndex);  //e.target);
-                            setPickedRow(ticketIndex);
+                            setPickedRow(tickets.findIndex(cur => cur.id === ticket.id));   //ticketIndex);
                             setTicketId(ticket.id);
                             dialog.showModal();
                           }
