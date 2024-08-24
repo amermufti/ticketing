@@ -150,7 +150,7 @@ function App() {
       URL.revokeObjectURL(url);
     };
   
-    return <button onClick={downloadCSV}>Export CSV</button>;
+    return <Button variation="primary" onClick={downloadCSV}>Export as CSV</Button>;
   };
  
 
@@ -165,6 +165,7 @@ function App() {
         <Card
           columnStart="2"
           columnEnd="-1"
+          height="5em"
         >
           <Image
             alt="Wagstaff Law Firm logo"
