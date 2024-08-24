@@ -400,7 +400,7 @@ function App() {
                 <RadioGroupField
                   legend="Status: "
                   name="status"
-                  value={pickedRow > -1 ? (tickets[pickedRow].status as string) : ''}
+                  defaultValue={pickedRow > -1 ? (tickets[pickedRow].status as string) : ''}
                   direction="row"
                   marginTop="0.5em"
                   marginBottom="0.5em"
@@ -413,7 +413,7 @@ function App() {
                 <TextAreaField
                   label="Notes:"
                   name="notes_resolution"
-                  value={pickedRow > -1 ? (tickets[pickedRow].notes_resolution as string) : ''}
+                  defaultValue={pickedRow > -1 ? (tickets[pickedRow].notes_resolution as string) : ''}
                   placeholder=""
                   rows={6}
                   marginTop="0.5em"
