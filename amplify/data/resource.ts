@@ -5,7 +5,7 @@ import { schema as generatedSqlSchema } from './schema.sql';
 const sqlSchema = generatedSqlSchema.authorization(allow => allow.guest())
 
   .addToSchema({
-    createNewTicket: a.mutation()
+    create: a.mutation()
       .arguments({
         id: a.integer().required(),
         requester_name: a.string().required(),
