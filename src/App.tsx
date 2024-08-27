@@ -110,13 +110,13 @@ function App() {
     console.log(created);
     client.models.Ticket.create(created);
 
+    /*
     const connection = mysql.createConnection({
       host: 'wagstaff.cjhozkhfk1vs.us-east-2.rds.amazonaws.com',
       user: 'usAMuftier',
       password: 'silverbullet23',
       database: 'wagstaff'
     });
-    /*
 
     connection.connect();
 
