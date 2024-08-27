@@ -110,13 +110,13 @@ function App() {
     console.log(created);
     client.models.ticketing.create(created);
 
+    /*
     const connection = mysql.createConnection({
       host: 'localhost',
       user: 'user',
       password: 'pw',
       database: 'db'
     });
-    /*
 
     connection.connect();
 
