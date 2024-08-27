@@ -95,7 +95,7 @@ function App() {
     setTimeRequested(timeReq);
     setSubmittedActive(true);
     let created = {
-      id: requesterName+' '+timeReq,
+      id: 100,//requesterName+' '+timeReq,
       requester_name: requesterName,
       requester_email: requesterEmail,
       severity: severity,
