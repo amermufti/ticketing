@@ -4,6 +4,26 @@ import { schema as generatedSqlSchema } from './schema.sql';
 // Add a global authorization rule
 const sqlSchema = generatedSqlSchema.authorization(allow => allow.guest())
 
+  .addToSchema({
+    createNewTicket: a.mutation()
+      .arguments({
+        id: a.integer().required(),
+        requester_name: a.string().required(),
+        requester_email: a.string().required(),
+        severity: a.string().required(),
+        reason_for_high: a.string(),
+        notes_request: a.string().required(),
+        time_requested: a.string().required(),
+        status: a.string(),
+        notes_resolution: a.string(),
+        time_resolved: a.string()
+      })
+      .returns(a.json().array())
+      .authorization(allow => allow.authenticated())
+
+      .handler(a.handler.sqlReference('./createNewTicket.sql'))
+  })
+
 /*== STEP 1 ===============================================================
 The section below creates a Todo database table with a "content" field. Try
 adding a new "isDone" field as a boolean. The authorization rule below
