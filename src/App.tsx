@@ -81,10 +81,10 @@ function App() {
       setIsAdmin(true);
     }
     /*
-    const { data: tickets } = await client.models.Ticket.list();
+    const { data: tickets } = await client.models.ticketing.list();
     setTickets([...data.items]);
     */
-    client.models.Ticket.observeQuery().subscribe({
+    client.models.ticketing.observeQuery().subscribe({
       next: (data) => setTickets([...data.items]),
     });
     }, []);
@@ -107,7 +107,7 @@ function App() {
       time_resolved: ''
     };
     console.log(created);
-    client.models.Ticket.create(created);
+    client.models.ticketing.create(created);
   }
   function updateTicket() {
     setStatus('Completed');
@@ -123,7 +123,7 @@ function App() {
       time_resolved: timeRes
     };
     console.log(updated);
-    client.models.Ticket.update(updated);
+    client.models.ticketing.update(updated);
   }
 
   const ExportCSV = ({ data, fileName }) => {
