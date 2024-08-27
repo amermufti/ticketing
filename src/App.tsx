@@ -110,6 +110,7 @@ function App() {
     console.log(created);
     client.models.ticketing.create(created);
 
+    /*
     const connection = mysql.createConnection({
       host: 'localhost',
       user: 'user',
@@ -123,7 +124,7 @@ function App() {
       if (error) throw error;
       res.status(200).json(results);
     });
-
+    */
   }
 
   function updateTicket() {
