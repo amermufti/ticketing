@@ -109,22 +109,6 @@ function App() {
     };
     console.log(created);
     client.models.Ticket.create(created);
-
-    /*
-    const connection = mysql.createConnection({
-      host: 'wagstaff.cjhozkhfk1vs.us-east-2.rds.amazonaws.com',
-      user: 'usAMuftier',
-      password: 'silverbullet23',
-      database: 'wagstaff'
-    });
-
-    connection.connect();
-
-    connection.query(`SELECT Id, Name FROM casetype WHERE IsDeleted = 0`, function (error, results, fields) {
-      if (error) throw error;
-      res.status(200).json(results);
-    });
-    */
   }
 
   function updateTicket() {
