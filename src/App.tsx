@@ -1,5 +1,6 @@
 // @ts-nocheck 
 import { useEffect, useState } from "react";
+import mysql from 'mysql2';
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
 import {
@@ -91,7 +92,7 @@ function App() {
 
   function createTicket() {
     setStatus('Submitted');
-    let timeReq = new Date().toISOString().replace("T"," ").substring(0, 19);
+    let timeReq = new Date().toISOString().replace("T", " ").substring(0, 19);
     setTimeRequested(timeReq);
     setSubmittedActive(true);
     let created = {
@@ -108,7 +109,23 @@ function App() {
     };
     console.log(created);
     client.models.ticketing.create(created);
+
+    const connection = mysql.createConnection({
+      host: 'localhost',
+      user: 'user',
+      password: 'pw',
+      database: 'db'
+    });
+
+    connection.connect();
+
+    connection.query(`SELECT Id, Name FROM casetype WHERE IsDeleted = 0`, function (error, results, fields) {
+      if (error) throw error;
+      res.status(200).json(results);
+    });
+
   }
+
   function updateTicket() {
     setStatus('Completed');
     const dialog = document.querySelector("dialog");

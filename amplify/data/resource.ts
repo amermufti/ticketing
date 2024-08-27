@@ -20,7 +20,6 @@ const sqlSchema = generatedSqlSchema.authorization(allow => allow.guest())
       })
       .returns(a.json().array())
       .authorization(allow => allow.authenticated())
-
       .handler(a.handler.sqlReference('./createNewTicket.sql'))
   })
 
