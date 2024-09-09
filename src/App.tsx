@@ -179,7 +179,7 @@ function App() {
           height="5em"
         >
           <Image
-            alt="Wagstaff Law Firm logo"
+            alt="Wag the Dog logo"
             src={logo}
             objectFit="initial"
             objectPosition="50% 50%"
