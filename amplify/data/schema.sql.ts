@@ -6,7 +6,7 @@ import { secret } from "@aws-amplify/backend";
 
 export const schema = configure({
     database: {
-        identifier: "IDI2fnra7zJh3sckDTGZ9pA",
+        identifier: "xxxxxxxxxxxxxxxxxxxxxxxxxx",
         engine: "mysql",
         connectionUri: secret("SQL_CONNECTION_STRING")
     }
